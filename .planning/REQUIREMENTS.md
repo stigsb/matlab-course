@@ -90,44 +90,44 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MATL-01 | — | Pending |
-| MATL-02 | — | Pending |
-| MATL-03 | — | Pending |
-| MATL-04 | — | Pending |
-| MATL-05 | — | Pending |
-| MATL-06 | — | Pending |
-| MATL-07 | — | Pending |
-| MATH-01 | — | Pending |
-| MATH-02 | — | Pending |
-| MATH-03 | — | Pending |
-| MATH-04 | — | Pending |
-| MATH-05 | — | Pending |
-| MATH-06 | — | Pending |
-| MATH-07 | — | Pending |
-| NEUR-01 | — | Pending |
-| NEUR-02 | — | Pending |
-| NEUR-03 | — | Pending |
-| NEUR-04 | — | Pending |
-| INFO-01 | — | Pending |
-| INFO-02 | — | Pending |
-| INFO-03 | — | Pending |
-| DIMR-01 | — | Pending |
-| DIMR-02 | — | Pending |
-| DIMR-03 | — | Pending |
-| ATTR-01 | — | Pending |
-| ATTR-02 | — | Pending |
-| ATTR-03 | — | Pending |
-| PEDA-01 | — | Pending |
-| PEDA-02 | — | Pending |
-| PEDA-03 | — | Pending |
-| PEDA-04 | — | Pending |
-| PEDA-05 | — | Pending |
+| MATL-01 | Phase 1 | Pending |
+| MATL-02 | Phase 1 | Pending |
+| MATL-03 | Phase 1 | Pending |
+| MATL-04 | Phase 1 | Pending |
+| MATL-05 | Phase 2 | Pending |
+| MATL-06 | Phase 2 | Pending |
+| MATL-07 | Phase 2 | Pending |
+| MATH-01 | Phase 1 | Pending |
+| MATH-02 | Phase 2 | Pending |
+| MATH-03 | Phase 2 | Pending |
+| MATH-04 | Phase 2 | Pending |
+| MATH-05 | Phase 2 | Pending |
+| MATH-06 | Phase 2 | Pending |
+| MATH-07 | Phase 3 | Pending |
+| NEUR-01 | Phase 3 | Pending |
+| NEUR-02 | Phase 3 | Pending |
+| NEUR-03 | Phase 3 | Pending |
+| NEUR-04 | Phase 3 | Pending |
+| INFO-01 | Phase 3 | Pending |
+| INFO-02 | Phase 3 | Pending |
+| INFO-03 | Phase 3 | Pending |
+| DIMR-01 | Phase 4 | Pending |
+| DIMR-02 | Phase 4 | Pending |
+| DIMR-03 | Phase 4 | Pending |
+| ATTR-01 | Phase 4 | Pending |
+| ATTR-02 | Phase 4 | Pending |
+| ATTR-03 | Phase 4 | Pending |
+| PEDA-01 | Phase 1 | Pending |
+| PEDA-02 | Phase 1 | Pending |
+| PEDA-03 | Phase 1 | Pending |
+| PEDA-04 | Phase 1 | Pending |
+| PEDA-05 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 32 total
-- Mapped to phases: 0
-- Unmapped: 32 ⚠️
+- Mapped to phases: 32
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-14*
-*Last updated: 2026-03-14 after initial definition*
+*Last updated: 2026-03-14 after roadmap creation*
