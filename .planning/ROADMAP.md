@@ -76,11 +76,11 @@ Plans:
   3. Learner can implement a Hopfield network that stores and retrieves simple patterns
   4. Learner can implement a ring attractor and visualize how it maintains a stable heading direction
   5. Learner can explain attractor dynamics using the ball-in-bowl metaphor and energy landscape visualizations
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md — Module 07: Dimensionality Reduction (PCA motivation, step-by-step, neural data application)
+- [ ] 04-02-PLAN.md — Module 08: Attractor Networks (energy landscapes, Hopfield memory, ring attractors)
 
 ## Progress
 
@@ -92,4 +92,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Matlab Survival Kit | 2/2 | Complete   | 2026-03-15 |
 | 2. Programming and Math Foundations | 2/2 | Complete   | 2026-03-15 |
 | 3. Neural Coding and Information Theory | 0/2 | Not started | - |
-| 4. Dimensionality Reduction and Attractor Networks | 0/? | Not started | - |
+| 4. Dimensionality Reduction and Attractor Networks | 0/2 | Not started | - |
