@@ -12,7 +12,7 @@ This roadmap takes Christel from zero Matlab to independently coding computation
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Matlab Survival Kit** - Variables, vectors, plotting, and first scripts with visual output
+- [x] **Phase 1: Matlab Survival Kit** - Variables, vectors, plotting, and first scripts with visual output (completed 2026-03-15)
 - [ ] **Phase 2: Programming and Math Foundations** - Functions, loops, conditionals, linear algebra, and statistics
 - [ ] **Phase 3: Neural Coding and Information Theory** - Tuning curves, spike trains, population coding, entropy, mutual information
 - [ ] **Phase 4: Dimensionality Reduction and Attractor Networks** - PCA, Hopfield networks, ring attractors
@@ -89,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Matlab Survival Kit | 0/2 | Planning complete | - |
+| 1. Matlab Survival Kit | 2/2 | Complete   | 2026-03-15 |
 | 2. Programming and Math Foundations | 0/? | Not started | - |
 | 3. Neural Coding and Information Theory | 0/? | Not started | - |
 | 4. Dimensionality Reduction and Attractor Networks | 0/? | Not started | - |

@@ -8,16 +8,16 @@
 ### Matlab Fundamentals
 
 - [x] **MATL-01**: Learner can create and manipulate variables, vectors, and matrices in Matlab
-- [ ] **MATL-02**: Learner can use indexing and slicing to access parts of vectors and matrices
+- [x] **MATL-02**: Learner can use indexing and slicing to access parts of vectors and matrices
 - [x] **MATL-03**: Learner can write, save, and run .m script files
-- [ ] **MATL-04**: Learner can create plots (line, scatter, bar, imagesc) with labels and titles
+- [x] **MATL-04**: Learner can create plots (line, scatter, bar, imagesc) with labels and titles
 - [ ] **MATL-05**: Learner can write functions that accept inputs and return outputs
 - [ ] **MATL-06**: Learner can use for-loops and while-loops to repeat computations
 - [ ] **MATL-07**: Learner can use if/else conditionals to control program flow
 
 ### Math Foundations (Integrated)
 
-- [ ] **MATH-01**: Learner understands vectors as arrows/directions and can visualize them in 2D/3D plots
+- [x] **MATH-01**: Learner understands vectors as arrows/directions and can visualize them in 2D/3D plots
 - [ ] **MATH-02**: Learner understands matrices as transformations and can visualize what they do to vectors
 - [ ] **MATH-03**: Learner can compute and interpret dot products and matrix multiplication
 - [ ] **MATH-04**: Learner understands eigenvalues/eigenvectors visually (directions that don't change under transformation)
@@ -91,13 +91,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | MATL-01 | Phase 1 | Complete |
-| MATL-02 | Phase 1 | Pending |
+| MATL-02 | Phase 1 | Complete |
 | MATL-03 | Phase 1 | Complete |
-| MATL-04 | Phase 1 | Pending |
+| MATL-04 | Phase 1 | Complete |
 | MATL-05 | Phase 2 | Pending |
 | MATL-06 | Phase 2 | Pending |
 | MATL-07 | Phase 2 | Pending |
-| MATH-01 | Phase 1 | Pending |
+| MATH-01 | Phase 1 | Complete |
 | MATH-02 | Phase 2 | Pending |
 | MATH-03 | Phase 2 | Pending |
 | MATH-04 | Phase 2 | Pending |
