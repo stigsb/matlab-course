@@ -7,9 +7,9 @@
 
 ### Matlab Fundamentals
 
-- [ ] **MATL-01**: Learner can create and manipulate variables, vectors, and matrices in Matlab
+- [x] **MATL-01**: Learner can create and manipulate variables, vectors, and matrices in Matlab
 - [ ] **MATL-02**: Learner can use indexing and slicing to access parts of vectors and matrices
-- [ ] **MATL-03**: Learner can write, save, and run .m script files
+- [x] **MATL-03**: Learner can write, save, and run .m script files
 - [ ] **MATL-04**: Learner can create plots (line, scatter, bar, imagesc) with labels and titles
 - [ ] **MATL-05**: Learner can write functions that accept inputs and return outputs
 - [ ] **MATL-06**: Learner can use for-loops and while-loops to repeat computations
@@ -52,11 +52,11 @@
 
 ### Pedagogy
 
-- [ ] **PEDA-01**: Every lesson produces visual output (plots, diagrams, or animations) within the first 5 minutes
-- [ ] **PEDA-02**: Lessons are chunked into 15-20 minute segments with clear checkpoints
-- [ ] **PEDA-03**: Math concepts are introduced visually first, then connected to notation ("notation bridge")
-- [ ] **PEDA-04**: Exercises are scaffolded (70-80% pre-written, learner fills key parts)
-- [ ] **PEDA-05**: Examples use relatable analogies drawn from everyday life and Christel's interests
+- [x] **PEDA-01**: Every lesson produces visual output (plots, diagrams, or animations) within the first 5 minutes
+- [x] **PEDA-02**: Lessons are chunked into 15-20 minute segments with clear checkpoints
+- [x] **PEDA-03**: Math concepts are introduced visually first, then connected to notation ("notation bridge")
+- [x] **PEDA-04**: Exercises are scaffolded (70-80% pre-written, learner fills key parts)
+- [x] **PEDA-05**: Examples use relatable analogies drawn from everyday life and Christel's interests
 
 ## v2 Requirements
 
@@ -90,9 +90,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MATL-01 | Phase 1 | Pending |
+| MATL-01 | Phase 1 | Complete |
 | MATL-02 | Phase 1 | Pending |
-| MATL-03 | Phase 1 | Pending |
+| MATL-03 | Phase 1 | Complete |
 | MATL-04 | Phase 1 | Pending |
 | MATL-05 | Phase 2 | Pending |
 | MATL-06 | Phase 2 | Pending |
@@ -117,11 +117,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ATTR-01 | Phase 4 | Pending |
 | ATTR-02 | Phase 4 | Pending |
 | ATTR-03 | Phase 4 | Pending |
-| PEDA-01 | Phase 1 | Pending |
-| PEDA-02 | Phase 1 | Pending |
-| PEDA-03 | Phase 1 | Pending |
-| PEDA-04 | Phase 1 | Pending |
-| PEDA-05 | Phase 1 | Pending |
+| PEDA-01 | Phase 1 | Complete |
+| PEDA-02 | Phase 1 | Complete |
+| PEDA-03 | Phase 1 | Complete |
+| PEDA-04 | Phase 1 | Complete |
+| PEDA-05 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 32 total
