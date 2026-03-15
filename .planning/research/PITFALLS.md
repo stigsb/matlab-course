@@ -1,203 +1,202 @@
-# Domain Pitfalls
+# Domain Pitfalls: v1.1 Interactive Web App
 
-**Domain:** Matlab-based computational neuroscience education for a visual learner with math gaps and ADHD
-**Researched:** 2026-03-14
+**Domain:** Static course web app on GitHub Pages with progress tracking
+**Researched:** 2026-03-16 (updated for Starlight stack decision)
+
+This document covers pitfalls specific to adding a web delivery layer to the existing v1.0 course content. For pedagogical pitfalls (cognitive overload, notation-first teaching, pacing), see the v1.0 research in milestones/v1.0-phases.
 
 ## Critical Pitfalls
 
-Mistakes that cause the learner to disengage, fall behind, or require major rework of course material.
+### Pitfall 1: localStorage Data Eviction on Safari
 
-### Pitfall 1: Notation-First Math Teaching
+**What goes wrong:** Progress data silently disappears. Safari's Intelligent Tracking Prevention (ITP) can delete localStorage for origins with no user interaction in the last 7 days. If Christel takes a week off, she returns to find all progress reset. On iOS Safari private browsing, localStorage writes throw exceptions (quota is 0).
 
-**What goes wrong:** Introducing math concepts through formal notation (summation symbols, integrals, matrix notation) before the learner has a visual and intuitive grasp of what the math actually does. This is the default in computational neuroscience courses and textbooks (including Rolls & Treves, the NEVR3004 textbook).
+**Why it happens:** Apple treats script-created storage as potential tracking data and aggressively evicts it.
 
-**Why it happens:** Course designers who are comfortable with math forget that notation is a compressed representation of ideas the learner has not yet formed. They treat symbols as the concept rather than as a shorthand for it.
-
-**Consequences:** Math anxiety triggers. The learner sees a wall of symbols, feels "I can't do this," and disengages. With ADHD, this disengagement happens faster and is harder to recover from. Once the learner believes the material is "too hard," motivation collapses.
+**Consequences:** Complete loss of progress tracking. For a learner with ADHD, a reset progress dashboard is a motivation killer.
 
 **Prevention:**
-- Always introduce math concepts visually first: plot the function, animate the process, show the data
-- Use the Concrete-Representational-Abstract (CRA) sequence: Matlab code (concrete) -> plots/diagrams (representational) -> notation (abstract, and only when needed)
-- Notation is introduced as "naming what you already understand," never as the entry point
-- Keep notation minimal — only introduce what NEVR3004 absolutely requires
+- Wrap all localStorage access in try/catch (nanostores/persistent does this)
+- Build an **export/import progress** feature (JSON download/upload) as backup -- ship this alongside initial progress tracking, not later
+- Show a warning banner if localStorage is unavailable
+- Design the UI so the site is fully functional without saved progress -- progress is a convenience, not a gate
+- Consider an alternative: store progress as a JSON file committed to the repo (she has write access)
 
-**Detection:** If a lesson draft contains math notation in the first half before any plot or code example, it needs restructuring.
+**Detection:** Test in Safari with a 7+ day gap. Test iOS Safari private mode.
 
-**Phase relevance:** Every phase. This is a design principle, not a one-time fix.
+### Pitfall 2: Overengineering the Web Layer
 
-### Pitfall 2: Cognitive Overload From Dual Novelty
+**What goes wrong:** The web app becomes the project instead of the course content being the project. Weeks spent on framework configuration, custom components, and build tooling when Starlight provides 80% of what's needed out of the box.
 
-**What goes wrong:** Teaching a new programming concept and a new math concept in the same lesson segment. Example: introducing matrix multiplication while also teaching Matlab's array indexing syntax for the first time.
+**Why it happens:** Developer instinct to customize everything. Starlight's defaults are good enough for a single-user course site. The temptation to add Tailwind, custom layouts, animation libraries, or a design system is strong but counterproductive.
 
-**Why it happens:** In computational neuroscience, the math and the code are deeply intertwined. It feels natural to teach them together. But for a learner who is new to both programming AND linear algebra, each one consumes the entire working memory budget (approximately 4-5 items for someone with ADHD, vs 7 +/- 2 for neurotypical adults).
-
-**Consequences:** The learner cannot tell whether their confusion is about the math or the code. Debugging becomes impossible. Frustration escalates rapidly. The learner blames themselves rather than the lesson design.
-
-**Prevention:**
-- Separate concerns ruthlessly: teach the Matlab syntax with familiar content first (numbers, simple arrays), then use that established syntax to explore new math
-- Each lesson segment should have exactly ONE new concept. Everything else should be revision or already-mastered material
-- Use a "scaffolding sandwich": familiar code -> new concept -> familiar code pattern applied to new concept
-- Working memory research supports chunking into units of 3-4 items maximum per segment
-
-**Detection:** If a lesson introduces more than one genuinely new idea (not just a variation), split it.
-
-**Phase relevance:** All phases, but especially critical in early phases (Matlab fundamentals + basic linear algebra) where everything is new.
-
-### Pitfall 3: The "Just Catch Up" Pacing Trap
-
-**What goes wrong:** Because Christel is already behind in NEVR3004, there is pressure to move fast through foundational material to reach the course-relevant topics (neural coding, information theory, etc.). This leads to rushing through Matlab basics and math foundations, leaving gaps that compound into bigger problems later.
-
-**Why it happens:** External deadline pressure from a university course that is already underway. The temptation is to skip "easy" material and jump to what the course is currently covering.
-
-**Consequences:** Without solid foundations, every advanced topic requires re-teaching basics mid-lesson, which is slower than teaching them properly the first time. The learner develops a fragile understanding that collapses under exam pressure. This is the single most common failure mode in catch-up tutoring.
+**Consequences:** Delivery delay. Christel gets the web app later because the developer is tweaking CSS variables instead of shipping content.
 
 **Prevention:**
-- Accept that the first 2-3 phases must build genuine foundations even if it feels "slow"
-- Design the foundation phases to be maximally efficient, not skipped: tight lessons, no tangents, every example serves double duty (teaches Matlab AND previews a neuroscience concept)
-- Make the connection to NEVR3004 explicit in every lesson ("you'll use this exact pattern when we analyze spike trains")
-- Identify the absolute minimum Matlab and math skills needed for each NEVR3004 topic and sequence the foundations accordingly
+- Use Starlight's default theme. Accept its visual choices.
+- Custom code should be limited to progress tracking (Preact islands + nanostores). Everything else should be Starlight defaults.
+- Hard rule: if the web layer takes more than 2 phases to build, it is overengineered.
+- If you find yourself writing more than 500 lines of custom CSS, stop and reconsider.
 
-**Detection:** If the learner is copying code patterns without understanding why they work, foundations were rushed.
+**Detection:** Count custom files vs generated/default files. If custom code exceeds 300 lines total (excluding content), you've gone too far for an MVP.
 
-**Phase relevance:** Phase 1-2 design. Getting the foundation right determines everything downstream.
+### Pitfall 3: Attempting Browser-Based MATLAB Execution
 
-### Pitfall 4: Visual Overload Instead of Visual Clarity
+**What goes wrong:** Weeks spent trying to get MATLAB code running in the browser via WebAssembly, Octave.js, or MATLAB Online embedding. None work for a static site.
 
-**What goes wrong:** Knowing the learner is visual, the course designer fills every lesson with plots, colors, animations, and diagrams — but without a clear visual hierarchy. Too many visual elements compete for attention.
+**Why it happens:** "Browser-based Matlab coding if feasible" is in PROJECT.md. The instinct is to try. MATLAB Online requires auth. Octave WASM (Sable/matwably) is a research prototype. RunMat is new and unembeddable.
 
-**Why it happens:** Overcorrection. "She's a visual learner" becomes "more visuals = better." Research on ADHD and visual learning specifically warns against this: over-coloring confuses, and students with attention challenges struggle to absorb large amounts of simultaneous visual information.
-
-**Consequences:** The learner cannot identify what is important in the visualization. Plots with 6 subplots, rainbow colormaps, and dense annotations become noise rather than signal. The visual "help" becomes another source of cognitive load.
+**Consequences:** Significant time wasted on something that either doesn't work or covers only a subset of functions the course uses (eig, imagesc, ode45).
 
 **Prevention:**
-- Limit to 3-4 colors per visualization
-- One concept per plot. Multiple subplots only when comparing the same concept across conditions
-- Use progressive disclosure: start with a simple plot, then layer complexity in subsequent code cells
-- Annotations should highlight the ONE thing to notice, not label everything
-- Prefer animations that build up step-by-step over static plots that show everything at once
+- The answer is: download workflow. View code in browser, copy or download .m file, run in MATLAB Desktop.
+- Christel already has MATLAB installed. Browser execution adds no value.
+- Do not spend more than 1 hour exploring this. The research is done.
 
-**Detection:** If a plot requires more than 10 seconds of study to grasp the main point, it needs simplification.
-
-**Phase relevance:** All phases. Establish a consistent visual style early and maintain it.
+**Detection:** If you're writing code related to browser MATLAB execution, stop immediately.
 
 ## Moderate Pitfalls
 
-### Pitfall 5: Abstract-Before-Concrete Lesson Flow
+### Pitfall 4: Content Migration Formatting Issues
 
-**What goes wrong:** Lessons start with "theory" paragraphs explaining what will be learned, followed by code. For an ADHD learner, the theory paragraph is where attention dies. By the time the code appears, engagement is already lost.
+**What goes wrong:** Existing lesson.md files render differently in Starlight than on GitHub. Different heading sizes, code block treatment, table formatting, or missing GFM features. MATLAB code blocks may not get syntax highlighting if the language identifier is wrong.
 
-**Prevention:**
-- Start every lesson with a compelling visual output: "Run this script. See that plot? That's what we're building today."
-- Show the result first, then explain how it works. Reverse the typical textbook flow.
-- Keep explanatory text to 2-3 sentences between code blocks. Long prose sections are attention killers.
-
-**Phase relevance:** All phases. This is a structural template for every lesson.
-
-### Pitfall 6: Matlab Syntax Gotchas Derailing Learning
-
-**What goes wrong:** Matlab has quirks that trip up beginners and consume debugging time that should be spent learning concepts: 1-based indexing (intuitive, but confusing if she reads any Python resources), row vs column vector confusion, semicolon suppression, cryptic error messages, parentheses for both indexing and function calls.
+**Why it happens:** The lessons were written for GitHub's markdown renderer. Starlight uses Astro's markdown pipeline (remark/rehype) with Shiki for code highlighting. Most GFM features work but edge cases exist.
 
 **Prevention:**
-- Create a "Matlab Quirks" reference card she can keep open while working
-- When introducing each syntax element, explicitly show the common mistake and its error message: "If you see 'Index exceeds array dimensions,' it usually means..."
-- Use consistent variable naming conventions from lesson 1 (e.g., always use descriptive names, never single letters except i,j for loop counters and x,y for coordinates)
-- Teach `size()`, `whos`, and `disp()` as debugging tools in the very first lesson
+- Test all 8 lesson.md files in Starlight before building any other features
+- Verify MATLAB code blocks use the `matlab` language identifier (check existing lessons; fix if they use `m` or no identifier)
+- Starlight renders GFM (tables, task lists, strikethrough) by default via remark-gfm
+- If any lesson uses raw HTML in markdown, verify it renders correctly (Astro treats HTML in markdown differently than GitHub)
 
-**Phase relevance:** Phase 1 (Matlab fundamentals). Front-load the debugging toolkit.
+**Detection:** Visual diff of every lesson in Starlight vs GitHub rendering. Any code block without proper highlighting or any broken table needs fixing.
 
-### Pitfall 7: Information Theory Without Intuition
+### Pitfall 5: Progress Dashboard That Feels Punishing
 
-**What goes wrong:** Information theory (entropy, mutual information) is one of the hardest NEVR3004 topics for students without a strong math background. The standard presentation uses logarithms, summations, and probability distributions — all potentially unfamiliar.
+**What goes wrong:** The dashboard prominently displays uncompleted items, creating a visual representation of "how much you haven't done." For a learner with ADHD who is already behind, a dashboard full of empty progress is anxiety-inducing.
 
-**Prevention:**
-- Build information theory on the "guessing game" intuition: entropy is how surprised you are, on average
-- Use concrete examples with small, countable outcomes before any formulas: coin flips, dice, "which neuron fired?"
-- Visualize probability distributions as bar charts before ever writing a formula
-- Connect to neuroscience immediately: "A neuron that fires randomly carries no information. A neuron that fires only when the cat appears carries a lot."
-- Introduce logarithms as a practical tool ("it makes multiplication into addition") not as an abstract function
-
-**Phase relevance:** The information theory phase specifically. Needs careful scaffolding.
-
-### Pitfall 8: Linear Algebra as a Separate Topic
-
-**What goes wrong:** Teaching "linear algebra basics" as a standalone module before using it in neuroscience context. The learner memorizes matrix operations but cannot connect them to anything meaningful, and the knowledge decays before it is needed.
+**Why it happens:** Progress dashboards default to showing completion percentage or remaining items. This is the wrong model for this learner.
 
 **Prevention:**
-- Introduce each linear algebra concept exactly when it is first needed: vectors when working with neural firing rates, matrices when doing population coding, eigenvalues when doing PCA
-- Always pair the math with a neuroscience visualization: "Each column of this matrix is a neuron's response. Each row is a time point. Now watch what happens when we multiply..."
-- Never teach matrix operations in the abstract. Every operation should answer a question the learner already cares about.
+- Show what has been completed, not what remains. "You've finished 3 modules!" not "5 modules remaining."
+- Use a bar that fills up rather than a checklist of incomplete items
+- Never show percentage prominently -- "25% done" reads as "75% failure"
+- Celebrate completed milestones
+- Consider a "last active" indicator that rewards returning rather than punishing absence
 
-**Phase relevance:** Math foundations should be distributed across all phases, not front-loaded.
+**Detection:** Look at the dashboard with 2/8 modules complete. Does it feel encouraging or overwhelming?
 
-### Pitfall 9: Skipping the "Why Should I Care?" Step
+### Pitfall 6: Starlight Sidebar Override Complexity
 
-**What goes wrong:** Jumping into implementation without establishing why a technique matters. "Today we'll learn about PCA" means nothing to someone who has never encountered a dataset with too many dimensions. Without motivation, the lesson feels arbitrary.
+**What goes wrong:** Overriding Starlight's sidebar to add progress checkmarks turns into a rabbit hole. The sidebar component has internal dependencies, and overriding it requires understanding Starlight's component internals. Version updates may break overrides.
+
+**Why it happens:** Starlight's override API is powerful but the sidebar is one of the more complex components. Adding reactive state (from nanostores) to a server-rendered Astro component requires careful hydration.
 
 **Prevention:**
-- Every new topic starts with a problem: "Here are recordings from 100 neurons. How do we make sense of this?" Then the technique is introduced as the solution.
-- Use real or realistic neuroscience data whenever possible, not abstract toy examples
-- Connect every technique to a concrete question a neuroscientist would ask
+- Start without sidebar progress indicators. Get the basic site working first.
+- Implement progress indicators in the sidebar only after the ProgressButton and ProgressDashboard work correctly
+- Consider an alternative: instead of overriding the sidebar, add a small progress indicator at the top of each page (simpler, doesn't require sidebar override)
+- Pin Starlight version and test upgrades carefully
 
-**Phase relevance:** All phases, but especially mid-to-late phases covering advanced NEVR3004 topics.
+**Detection:** If the sidebar override takes more than 4 hours to implement, use the simpler per-page indicator approach instead.
+
+### Pitfall 7: GitHub Pages Base Path Configuration
+
+**What goes wrong:** All asset links (CSS, JS, images, .m file downloads) are broken on GitHub Pages because the site is served from `https://username.github.io/matlab-course/` (with a base path) but the links assume the root `/`.
+
+**Why it happens:** GitHub Pages project sites use a base path matching the repo name. Astro needs to know this to generate correct URLs.
+
+**Prevention:**
+- Set `base` in astro.config.mjs: `base: '/matlab-course'`
+- Use `import.meta.env.BASE_URL` for all dynamic URLs
+- Starlight handles this for navigation and content links automatically
+- Download links to .m files in public/ must also use the base path
+
+**Detection:** Deploy to GitHub Pages and click every link. Any 404 on assets means the base path is wrong.
+
+### Pitfall 8: Code Display Without Copy/Download Affordance
+
+**What goes wrong:** Code is highlighted but there's no easy way to get it into MATLAB Desktop.
+
+**Why it happens:** Developers focus on making code look good rather than making it usable.
+
+**Prevention:**
+- Starlight's Expressive Code provides copy-to-clipboard by default on all code blocks
+- Add explicit download links for each .m file referenced in a lesson
+- Consider a "Download all module scripts" link per module
+- The repo clone is also a valid download mechanism -- provide clear instructions
+
+**Detection:** Time from reading code in browser to running it in MATLAB. Should be under 30 seconds.
 
 ## Minor Pitfalls
 
-### Pitfall 10: Inconsistent Lesson Structure
+### Pitfall 9: Deploying Before Content Renders Correctly
 
-**What goes wrong:** Each lesson has a different format, different conventions, different density. The learner cannot predict what to expect, which increases cognitive load from navigating the material itself.
-
-**Prevention:**
-- Establish a consistent lesson template from day one: hook (visual output) -> concept (2-3 sentences) -> code (with comments) -> exercise (modify the code) -> checkpoint (what you should now understand)
-- Use the same plotting style, color scheme, and variable naming across all lessons
-- Keep lesson length consistent (15-20 minute target completion time to respect attention limits)
-
-**Phase relevance:** Phase 1. Establish the pattern early.
-
-### Pitfall 11: No Quick Wins in Early Lessons
-
-**What goes wrong:** The first few lessons are all setup and syntax, producing no satisfying output. The learner never experiences the reward of "I made something cool" and motivation drops before real learning begins.
+**What goes wrong:** The site deploys with a beautiful Starlight shell but broken content. Lessons render incorrectly, links are broken, some modules are missing.
 
 **Prevention:**
-- Lesson 1 should produce a visually interesting plot within the first 5 minutes of coding
-- Every lesson should have at least one moment of "look what I just did"
-- Front-load the most visually rewarding Matlab capabilities (plotting, animation) before the less exciting parts (data types, control flow)
+- Deploy only when at least Module 01 renders correctly end-to-end
+- Test: landing page -> Module 01 -> read lesson -> view code -> copy/download -> mark done -> see progress update
+- Use Starlight's built-in 404 page rather than broken links for in-progress modules
 
-**Phase relevance:** Phase 1, especially the first 2-3 lessons. First impressions determine engagement.
+**Detection:** Click every link on the deployed site. Any 404 or rendering error means it shipped too early.
 
-### Pitfall 12: Underestimating the Notation Translation Burden
+### Pitfall 10: "Done" Button Ambiguity
 
-**What goes wrong:** NEVR3004 lecture slides and textbooks use standard mathematical notation. Even if our lessons teach concepts visually, the learner still needs to recognize and parse the notation she encounters in class.
+**What goes wrong:** "Done" buttons exist but it's unclear what "done" means. "I read it"? "I ran the code"? "I understood it"? Ambiguity causes anxiety.
 
 **Prevention:**
-- After establishing visual intuition, explicitly bridge to the notation used in NEVR3004: "In your course slides, you'll see this written as [notation]. That's just the formula version of what we plotted."
-- Create a notation cheat sheet that maps symbols to plain English and to Matlab code
-- Practice reading notation as a separate skill, distinct from understanding the concept
+- Label clearly: "I've completed this lesson" or "Mark as complete"
+- Allow toggling (unmark). If she revisits and realizes she didn't understand, she can uncheck.
+- No verification or quiz tied to the button. Purely self-reported.
 
-**Phase relevance:** All phases, but especially once NEVR3004-specific topics begin.
+**Detection:** Would the learner hesitate before clicking? If the label is ambiguous, clarify.
+
+### Pitfall 11: Ignoring Astro 6 Migration Path
+
+**What goes wrong:** Building on Astro 5.x without considering that Astro 6 is now released. When eventually upgrading, breaking changes require rework.
+
+**Prevention:**
+- Avoid deprecated Astro 5 APIs (check Astro 6 migration guide for what's changing)
+- Use Starlight's public APIs, not internal component paths
+- Keep dependencies minimal so there are fewer things to upgrade
+- The upgrade path from Astro 5 to 6 is documented and should be straightforward when the time comes
+
+**Detection:** Run `npx @astrojs/upgrade` periodically to check for recommended updates.
 
 ## Phase-Specific Warnings
 
 | Phase Topic | Likely Pitfall | Mitigation |
 |-------------|---------------|------------|
-| Matlab fundamentals | Boring syntax drill kills motivation | Start with plotting, weave syntax around visual outputs |
-| Vectors and matrices | Abstract notation before intuition | Introduce through neuroscience data (firing rates, time series) |
-| Programming constructs (loops, functions) | Dual novelty overload (new syntax + new logic) | Teach logic with pseudocode/flowcharts first, then Matlab syntax |
-| Neural coding/decoding | Math prerequisites assumed | Build up from counting spikes to rate codes to tuning curves, visually |
-| Information theory | Logarithms and summation notation barrier | Guessing game intuition first, formulas last |
-| Dimensionality reduction (PCA) | "Why do I need this?" unclear | Start with the problem (too many neurons), not the solution (eigenvectors) |
-| Attractor networks | ODE/dynamics concepts missing | Animate the dynamics, show the attractor landscape as a ball rolling on a surface |
-| Neural data analysis | Real data messiness overwhelms | Use pre-cleaned datasets first, introduce preprocessing only after core analysis is comfortable |
+| Project scaffolding | Base path wrong for GitHub Pages (Pitfall 7) | Set `base` in config immediately. Test with `npm run preview`. |
+| Content migration | Markdown rendering differences (Pitfall 4) | Visual test all 8 lessons before building further. |
+| Code display | Copy/download not prominent enough (Pitfall 8) | Verify Expressive Code copy button works. Add download links. |
+| Progress tracking | localStorage eviction (Pitfall 1) | Build export/import alongside initial implementation. |
+| Progress dashboard | Dashboard feels punishing (Pitfall 5) | Show completed items, not remaining. Celebrate progress. |
+| Sidebar override | Override complexity (Pitfall 6) | Start simple. Fallback to per-page indicator if sidebar override is hard. |
+| Deployment | Shipping broken content (Pitfall 9) | Full end-to-end test of Module 01 before first deploy. |
+| MATLAB in browser | Attempting browser execution (Pitfall 3) | Do not attempt. Download workflow only. |
+
+## Pitfalls Resolved by Starlight
+
+These were risks with a custom Astro build but are handled by Starlight:
+
+| Former Risk | How Starlight Resolves It |
+|-------------|--------------------------|
+| SPA routing breaks on GitHub Pages | Starlight generates real HTML files. No SPA routing. |
+| Mobile responsiveness | Starlight's layout is responsive by default. |
+| Search implementation | Pagefind is built in and runs at build time. |
+| Syntax highlighting configuration | Shiki with MATLAB grammar is built in. |
+| Dark mode implementation | Built-in toggle with localStorage preference. |
+| Navigation cognitive overload | Starlight's sidebar + prev/next is a well-tested pattern. |
+| Accessibility | Starlight has accessibility features (keyboard nav, ARIA) built in. |
 
 ## Sources
 
-- [NEVR3004 Course Page, NTNU](https://www.ntnu.edu/studies/courses/NEVR3004)
-- [Neuromatch Academy Prerequisites](https://compneuro.neuromatch.io/prereqs/ComputationalNeuroscience.html)
-- [Universal Design for Learning for Children with ADHD (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10453933/)
-- [Visualization to support ADHD learners in math (Wiley)](https://nasenjournals.onlinelibrary.wiley.com/doi/10.1111/1467-8578.12466)
-- [Why Visual Thinkers Struggle with Abstract Math](https://www.monstermath.app/blog/visual-thinkers-and-math-learning)
-- [3 Visual Teaching Strategies for Students with ADHD](https://www.teachercreatedmaterials.com/free-spirit-publishing/blog/3-visual-teaching-strategies-for-students-with-adhd)
-- [Concreteness Fading / CRA Model](https://makemathmoments.com/concreteness-fading/)
-- [CHADD: Executive Functioning Disorder and Mathematics](https://chadd.org/adhd-news/adhd-news-educators/executive-functioning-disorder-and-mathematics/)
-- [neuroplausible: I Hate Matlab](https://neuroplausible.com/matlab) — common Matlab frustrations in neuroscience
-- [Matlab for Psychology and Neuroscience (Nottingham)](https://schluppeck.github.io/matlab/)
-- [Working Memory Limits in Programming](https://super-productivity.com/blog/working-memory-limits-developers/)
+- [Safari ITP localStorage eviction](https://bugs.webkit.org/show_bug.cgi?id=266559) -- Safari periodically erasing localStorage
+- [Safari private browsing localStorage](https://github.com/mdn/content/issues/17827) -- iOS Safari private mode behavior
+- [Storage quotas and eviction (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria) -- Browser storage documentation
+- [Starlight: Overriding Components](https://starlight.astro.build/guides/overriding-components/) -- Override API and limitations
+- [Astro: Deploy to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/) -- Base path configuration
+- [Astro 6 Migration Guide](https://docs.astro.build/en/guides/upgrade-to/v6/) -- Breaking changes to avoid in Astro 5 code
+- [ADHD-friendly app design](https://www.monstermath.app/blog/adhd-friendly-app-design-what-to-look-for-and-what-to-avoid) -- Progress dashboard UX

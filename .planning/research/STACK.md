@@ -1,191 +1,223 @@
-# Technology Stack
+# Technology Stack: v1.1 Interactive Web App
 
-**Project:** Matlab for Computational Neuroscience (NEVR3004 prep)
-**Researched:** 2026-03-14
+**Project:** Matlab for Computational Neuroscience -- Interactive Version
+**Researched:** 2026-03-16
+**Scope:** NEW stack additions for GitHub Pages web app delivery. Does NOT replace v1.0 STACK.md (Matlab course content stack remains unchanged).
 
 ## Recommended Stack
 
-### Core Platform
+### Static Site Generator
 
 | Technology | Version | Purpose | Why |
 |------------|---------|---------|-----|
-| Matlab | R2024b+ (NTNU license) | All coding and visualization | Required by NEVR3004; NTNU provides campus license. Use whatever version NTNU's license server offers. |
-| Plain .m scripts | N/A | Course lesson files | Decision already made in PROJECT.md. Git-friendly, portable, works in any editor. No .mlx binary format headaches. |
-| Markdown (.md) | N/A | Written explanations, lesson text | Pairs with .m scripts. Readable anywhere, lightweight, version-controllable. |
+| Astro | ^5.18 (latest 5.x) | Static site framework | Content-driven by design. Zero JS by default, islands for interactive bits. Content Collections map perfectly to 8 course modules. Built-in Markdown rendering with Shiki syntax highlighting (MATLAB supported). GitHub Pages deployment is a first-class workflow with official GitHub Action. |
+| @astrojs/starlight | ^0.37 | Documentation theme | Purpose-built for structured content with sidebar navigation, search (Pagefind), dark mode, mobile-responsive layout. Saves weeks of UI work. Supports component overrides for custom progress tracking UI. |
 
-### Matlab Toolboxes
+**Why Astro 5.x, not Astro 6:** Astro 6.0 released March 10, 2026 (6 days ago). It requires Node 22+ and introduces breaking changes. Starlight 0.38 adds Astro 6 support but is hours old. For a course site where stability matters more than bleeding-edge features, stick with Astro 5.x + Starlight 0.37.x. Upgrade to Astro 6 after the ecosystem stabilizes (1-2 months).
 
-**Important:** NEVR3004 is a course for neuroscience students, not Matlab power users. Most topics can be taught with core Matlab. Avoid toolbox dependencies where built-in functions suffice.
+**Why Starlight, not plain Astro:** This is structured educational content with a clear sidebar hierarchy (8 modules, lessons within each). Starlight provides sidebar navigation, full-text search, table of contents, mobile layout, and accessibility out of the box. Building this from scratch in plain Astro would take weeks for zero pedagogical benefit.
 
-| Toolbox | Required? | Purpose | Why |
-|---------|-----------|---------|-----|
-| **None (core Matlab)** | YES | Vectors, matrices, plotting, basic programming | Core Matlab covers 90% of NEVR3004 needs: plot(), subplot(), eig(), cov(), mean(), std(), hist(), imagesc(), rand(), randn() |
-| Statistics and Machine Learning Toolbox | NICE-TO-HAVE | PCA via `pca()`, distribution fitting | The `pca()` function is convenient, but PCA can be taught from scratch using `eig()` and `cov()` on the covariance matrix. Teaching it manually is actually better pedagogy for this learner. Use toolbox only if already available. |
-| Signal Processing Toolbox | NO | Spectral analysis, filtering | NEVR3004 does not focus on signal processing. Overkill for this course. |
-| Deep Learning Toolbox | NO | Neural networks (ML sense) | NEVR3004 is computational neuroscience, not machine learning. Explicitly out of scope per PROJECT.md. |
-| Image Processing Toolbox | NO | Image analysis | Not relevant to NEVR3004 topics. |
-| Symbolic Math Toolbox | NO | Symbolic computation | Would add complexity. Better to teach math numerically and visually. |
+**Why not Jekyll/Hugo/MkDocs:** Jekyll is fine for simple sites but lacks the island architecture needed for interactive progress tracking without a full SPA. Hugo and MkDocs are documentation-focused but don't support interactive client-side components as cleanly as Astro's islands. Astro lets us add localStorage-backed progress tracking as isolated interactive islands within an otherwise static site.
 
-**Confidence: HIGH** -- The NEVR3004 course description focuses on neural coding/decoding, information theory, dimensionality reduction, and attractor networks. All of these can be implemented with core Matlab functions.
+### Interactive Components (Progress Tracking)
 
-### Key Matlab Functions by Topic
+| Technology | Version | Purpose | Why |
+|------------|---------|---------|-----|
+| @astrojs/preact | ^4.1 | Client-side interactive islands | Preact is 3KB (vs React's 40KB+). Sufficient for progress buttons, dashboard, and state display. Astro's `client:load` directive hydrates only these components. |
+| nanostores | ^0.11 | State management across islands | Astro-recommended solution for sharing state between islands. 286 bytes. Works with Preact out of the box. |
+| @nanostores/persistent | ^0.10 | localStorage persistence | Wraps nanostores with automatic localStorage sync. Progress survives page reloads and browser restarts. Syncs across tabs. |
 
-#### Matlab Fundamentals
-| Function | Purpose | Lesson Context |
-|----------|---------|----------------|
-| `plot()`, `subplot()`, `figure()` | 2D plotting | Every lesson -- visual-first approach |
-| `imagesc()`, `colorbar()` | Matrix visualization | Visualizing weight matrices, correlation matrices |
-| `xlabel()`, `ylabel()`, `title()`, `legend()` | Plot labeling | Making plots self-documenting |
-| `linspace()`, `zeros()`, `ones()`, `rand()`, `randn()` | Creating vectors/matrices | Building data and model parameters |
-| `size()`, `length()`, `numel()` | Inspecting data | Debugging and understanding data shapes |
+**Why Preact, not React:** The interactive surface area is tiny -- "Mark as Done" buttons and a progress dashboard. Preact's 3KB footprint vs React's 40KB+ is the right trade for a site that should feel fast. Preact's API is React-compatible, so no learning curve cost.
 
-#### Linear Algebra (for dimensionality reduction, attractor networks)
-| Function | Purpose | Lesson Context |
-|----------|---------|----------------|
-| `*` (matrix multiply) | Matrix multiplication | Core operation for neural network models |
-| `'` (transpose) | Matrix transpose | Data manipulation, network weight matrices |
-| `eig()` | Eigenvalue decomposition | PCA from scratch, stability analysis of attractor networks |
-| `cov()` | Covariance matrix | PCA, neural population analysis |
-| `inv()` | Matrix inverse | Understanding least squares, network dynamics |
-| `dot()` | Dot product | Neural coding, similarity measures |
-| `norm()` | Vector/matrix norms | Distance measures, normalization |
+**Why nanostores, not raw localStorage:** Multiple interactive islands on a page (e.g., a "Done" button and a progress indicator in the sidebar) need shared state. Nanostores + @nanostores/persistent gives reactive state that auto-persists to localStorage and syncs across tabs. Rolling your own with raw localStorage means writing event listeners, JSON serialization, and cross-tab sync from scratch.
 
-#### Statistics (for neural data analysis, information theory)
-| Function | Purpose | Lesson Context |
-|----------|---------|----------------|
-| `mean()`, `std()`, `var()` | Descriptive statistics | Spike rate analysis, firing rate distributions |
-| `histogram()`, `histcounts()` | Distribution visualization | Spike count distributions, tuning curves |
-| `corrcoef()` | Correlation | Noise correlations, signal correlations |
-| `log2()` | Logarithm base 2 | Information theory: entropy, mutual information |
-| `cumsum()` | Cumulative sum | Random walks, integration models |
+### Syntax Highlighting
 
-#### Simulation and Modeling (for attractor networks)
-| Function | Purpose | Lesson Context |
-|----------|---------|----------------|
-| `for`/`while` loops | Time-stepping simulations | Simulating network dynamics over time |
-| `tanh()`, `exp()` | Activation functions | Transfer functions in neural network models |
-| `ode45()` | ODE solver | Continuous-time network dynamics (if needed) |
-| Anonymous functions `@(x)` | Inline function definitions | Defining activation functions, rate models |
+| Technology | Version | Purpose | Why |
+|------------|---------|---------|-----|
+| Shiki (built into Astro) | N/A (bundled) | MATLAB code highlighting | Astro uses Shiki by default. Shiki supports MATLAB via the official MathWorks TextMate grammar (`mathworks/MATLAB-Language-grammar`). No configuration needed -- just use `matlab` as the language identifier in fenced code blocks. VS Code-quality highlighting out of the box. |
 
-#### Data I/O
-| Function | Purpose | Lesson Context |
-|----------|---------|----------------|
-| `load()`, `save()` | Load/save .mat files | Working with provided neural datasets |
-| `csvread()` / `readmatrix()` | Load CSV data | Alternative data formats |
+### Search
 
-### Reference Materials
+| Technology | Version | Purpose | Why |
+|------------|---------|---------|-----|
+| Pagefind (built into Starlight) | N/A (bundled) | Full-text search across all lessons | Starlight includes Pagefind automatically. Runs at build time to index all content, then provides instant client-side search with no server. Zero configuration needed. |
 
-#### Primary Textbook (NEVR3004 reference)
+### Deployment
 
-| Resource | Author(s) | Why |
-|----------|-----------|-----|
-| **Neural Networks and Brain Function** | Rolls & Treves (1998, Oxford UP) | Referenced directly in NEVR3004 prerequisites (appendices A1-A2 for math background). Covers autoassociation, pattern association, attractor networks -- the exact models NEVR3004 teaches. This is the course's theoretical backbone. |
+| Technology | Version | Purpose | Why |
+|------------|---------|---------|-----|
+| GitHub Pages | N/A | Static hosting | Free, already where the repo lives. No server to manage. Custom domain optional but unnecessary for a personal course. |
+| GitHub Actions | N/A | Build + deploy pipeline | Astro provides an official `withastro/action` GitHub Action. Push to main, site deploys automatically. |
 
-**Confidence: HIGH** -- NTNU's NEVR3004 page explicitly references appendices from this book for prerequisite math knowledge.
+### File Downloads
 
-#### Supplementary Textbooks
+| Technology | Version | Purpose | Why |
+|------------|---------|---------|-----|
+| Static file serving | N/A | Downloadable .m files | Astro's `public/` directory serves static files as-is. Place .m files there (or in a structured subdirectory), link with `<a href="/scripts/demo_hello.m" download>`. No library needed. HTML5 `download` attribute handles it. |
 
-| Resource | Author(s) | Why | When to Use |
-|----------|-----------|-----|-------------|
-| **Matlab for Neuroscientists** (2nd ed.) | Wallisch et al. (2014, Academic Press) | The standard Matlab-in-neuroscience textbook. Covers data analysis, visualization, and modeling with Matlab code examples. | Reference for Matlab patterns and idioms. Cherry-pick examples, don't follow sequentially. |
-| **An Introductory Course in Computational Neuroscience** | Paul Miller (2018, MIT Press) | Matlab-based tutorials covering neural models, network dynamics, with freely available code. | Source of simulation exercises. Closest match to NEVR3004 modeling topics. |
-| **Theoretical Neuroscience** | Dayan & Abbott (2001, MIT Press) | The canonical computational neuroscience textbook. Covers neural coding, information theory, network models mathematically. | Reference for theory. Too math-heavy to use directly, but good for understanding what to simplify. |
+## Browser-Based MATLAB Execution: Assessment
 
-**Confidence: MEDIUM** -- These are the standard textbooks in the field. However, NEVR3004's actual assigned readings may differ; course materials are listed as "to be announced."
+### Verdict: DO NOT BUILD. Recommend download workflow instead.
 
-#### Free Online Resources
+**Why not:**
 
-| Resource | URL | Why | When to Use |
-|----------|-----|-----|-------------|
-| MathWorks Onramp (free) | mathworks.com/learn/tutorials/matlab-onramp.html | Interactive 2-hour Matlab intro, free with MathWorks account | Quick-start if she needs to get oriented in the IDE |
-| Neuromatch Academy CompNeuro | compneuro.neuromatch.io | Open-access computational neuroscience course with tutorials on PCA, neural coding, information theory | Conceptual reference (note: uses Python, not Matlab -- adapt concepts only) |
-| Information Theory in Neuroscience Tutorial | doi.org/10.1523/ENEURO.0052-18.2018 | Published tutorial with Matlab toolbox for computing entropy and mutual information | Direct resource for the information theory module |
-| UCL Intro to Matlab | (linked from NEVR3004 page) | Basic Matlab skills, recommended by NEVR3004 itself | Supplementary self-study |
+1. **MATLAB cannot run in-browser.** There is no WebAssembly port of MATLAB. MathWorks offers MATLAB Online (cloud-hosted, requires license login) and MATLAB Web App Server (requires server infrastructure). Neither works as an embedded static-site component.
 
-**Confidence: HIGH** -- These are established, free resources. The Information Theory tutorial includes a Matlab toolbox (Neuroscience Information Theory Toolbox) that could be directly useful.
+2. **GNU Octave WebAssembly exists but is experimental.** The Sable/matwably project is a research prototype, not production-ready. RunMat offers browser-based MATLAB-compatible execution via WebAssembly but is a third-party service, not embeddable.
 
-### Course Material Format
+3. **Christel already has MATLAB installed.** She has an NTNU campus license. The value of browser execution is low when the target user already has the real tool.
 
-| Component | Format | Purpose |
-|-----------|--------|---------|
-| Lesson text | Markdown (.md) | Explanations, analogies, context. Rendered nicely on GitHub or any markdown viewer. |
-| Code exercises | Plain Matlab scripts (.m) | Runnable, modifiable code. Heavily commented with `%` for inline explanations. |
-| Data files | .mat files | Pre-built datasets for exercises (synthetic neural data, etc.) |
-| Figures | Generated by scripts (not static images) | Every script produces its own visualizations. She runs it, she sees it. |
+4. **Pedagogical mismatch.** A sandboxed browser environment would not match the real MATLAB Desktop experience she needs for NEVR3004. Learning in a different environment creates transfer problems.
 
-#### Script Structure Convention
+### Recommended Alternative: Download + Copy Workflow
 
-Each .m lesson script should follow this pattern:
-```matlab
-%% Lesson Title
-% Brief description of what this lesson covers
+- Each lesson page shows MATLAB code with syntax highlighting (Shiki)
+- "Download .m file" button links to the actual script
+- "Copy to clipboard" button on code blocks (Starlight supports this via Expressive Code)
+- She opens the .m file in MATLAB Desktop and runs it there
+- Optional: link to MATLAB Online for quick experiments (but don't depend on it)
 
-%% Section 1: Concept Name
-% Explanation in comments (keep it short, conversational)
-% ...
+This is simpler, more reliable, and teaches in the actual environment she'll use.
 
-% Code that demonstrates the concept
-x = linspace(0, 2*pi, 100);
-y = sin(x);
-plot(x, y);
-title('A sine wave - the building block of signals');
+## What NOT to Add
 
-%% Section 2: Next Concept
-% ...
-```
-
-Using `%%` section breaks allows running sections independently in Matlab (Ctrl+Enter on a section). This supports the small-chunk, quick-win learning style.
+| Technology | Why Not |
+|------------|---------|
+| React | Overkill. 40KB+ for a few buttons. Preact does the same at 3KB. |
+| Next.js / Remix / SvelteKit | These are application frameworks. This is a content site with tiny interactive islands, not a web app. |
+| Tailwind CSS | Starlight has its own design system. Adding Tailwind creates two styling systems fighting each other. Use Starlight's CSS custom properties for theming. |
+| Database / Supabase / Firebase | localStorage is sufficient for single-user progress tracking. A database adds auth, hosting, and complexity for zero benefit. |
+| MATLAB WebAssembly / Octave WASM | See assessment above. Not production-ready, not needed, pedagogically wrong. |
+| Monaco Editor / CodeMirror | Embedding a code editor is tempting but unnecessary. She should edit in MATLAB Desktop. A read-only syntax-highlighted code block with copy-to-clipboard is the right UX. |
+| Service Workers / PWA | Adds complexity. GitHub Pages serves fast static files. Offline support is unnecessary -- she needs MATLAB installed to do the exercises anyway. |
+| MDX | Starlight supports MDX but plain Markdown with Astro components is simpler. MDX adds a compilation layer and makes content less portable. Use Starlight's built-in component system instead. |
+| i18n | Course is English-only per PROJECT.md. Don't add internationalization infrastructure. |
 
 ## Alternatives Considered
 
 | Category | Recommended | Alternative | Why Not |
 |----------|-------------|-------------|---------|
-| Script format | .m scripts | .mlx Live Scripts | PROJECT.md already decided: .m for portability, git-friendliness, simpler toolchain. Live Scripts are nice but add complexity and binary format headaches. |
-| Language | Matlab | Python | NEVR3004 uses Matlab. Non-negotiable. |
-| Math teaching | Integrated into code | Separate math primer | PROJECT.md decided: math in context, not separate. Matches ADHD-friendly chunked approach. |
-| PCA implementation | Manual (eig + cov) | `pca()` from Stats Toolbox | Teaching the manual approach builds understanding. Toolbox function is a black box. Can mention `pca()` as "the shortcut" after understanding. |
-| Visualization | Built-in plot functions | Third-party viz libraries | Core Matlab plotting is sufficient and exactly what NEVR3004 expects. No extra dependencies. |
-| IDE | Matlab Desktop | VS Code + Matlab extension | Matlab Desktop is what NEVR3004 assumes. Integrated variable browser and plot windows are invaluable for a visual learner. |
-
-## What NOT to Use
-
-| Technology | Why Not |
-|------------|---------|
-| Simulink | Overkill. NEVR3004 doesn't use it. Adds massive complexity. |
-| Deep Learning Toolbox | Wrong domain. NEVR3004 is computational neuroscience, not ML. |
-| .mlx Live Scripts | Binary format, poor git support, fragile. Already decided against in PROJECT.md. |
-| Python | NEVR3004 uses Matlab. Period. |
-| Jupyter/MATLAB kernel | Adds toolchain complexity. Plain .m scripts are simpler and more portable. |
-| Symbolic Math Toolbox | Math should be taught numerically and visually, not symbolically. Symbolic math adds cognitive load without payoff for this learner. |
-| App Designer / GUIs | Christel needs to write and understand scripts, not build apps. |
+| Framework | Astro + Starlight | Jekyll | No island architecture for interactive progress tracking. Would need a separate JS bundle. |
+| Framework | Astro + Starlight | Hugo | Same issue. Great for static docs, poor for interactive islands. |
+| Framework | Astro + Starlight | MkDocs Material | Python-based, interactive components require custom JS escape hatches. |
+| Framework | Astro + Starlight | VitePress | Vue-based, decent option, but less mature ecosystem for custom islands than Astro. |
+| UI library | Preact | Vanilla JS | Vanilla works for one button, breaks down for reactive state across multiple islands. Nanostores integration requires a framework. |
+| UI library | Preact | Svelte | Also good. Chose Preact because Astro docs specifically recommend nanostores + Preact for island state sharing. |
+| State | nanostores | Zustand | Zustand is React-specific and 1KB vs nanostores' 286 bytes. Nanostores is framework-agnostic. |
+| Progress storage | localStorage | IndexedDB | IndexedDB is for large/complex data. Progress is a simple object mapping lesson IDs to booleans. localStorage is the right tool. |
 
 ## Installation
 
 ```bash
-# No command-line installation needed.
-# Matlab is installed and licensed through NTNU's campus license.
-#
-# Verify she has:
-# 1. Matlab installed (any recent version, R2023b+ is fine)
-# 2. NTNU license activated
-# 3. The Matlab Desktop (not Matlab Online, unless preferred)
-#
-# Check available toolboxes in Matlab:
-#   >> ver
-#
-# Core Matlab is sufficient. If Statistics Toolbox is available, great.
-# If not, no problem -- we teach PCA manually.
+# Create new Astro project with Starlight template
+npm create astro@latest -- --template starlight
+
+# Add Preact integration for interactive islands
+npx astro add preact
+
+# Add state management for progress tracking
+npm install nanostores @nanostores/persistent
+
+# Dev dependencies (already included by Astro)
+# - shiki (syntax highlighting, bundled)
+# - pagefind (search, bundled by Starlight)
 ```
+
+### Project Structure (new files only)
+
+```
+matlab-course/
+  web/                          # New: Astro project root
+    astro.config.mjs            # Astro + Starlight + Preact config
+    src/
+      content/
+        docs/                   # Course content as .md files
+          01-first-steps/
+            index.md            # Converted from lesson.md
+          02-vectors-and-plotting/
+            index.md
+          ...
+      components/
+        ProgressButton.tsx      # Preact "Mark as Done" island
+        ProgressDashboard.tsx   # Preact progress overview island
+      stores/
+        progress.ts             # nanostores/persistent store
+    public/
+      scripts/                  # Downloadable .m files
+        01-first-steps/
+          demo_hello.m
+          demo_variables.m
+          ...
+```
+
+### Content Migration Strategy
+
+Existing markdown lessons in each module's `lesson.md` become Starlight pages in `src/content/docs/`. The .m script files move to `public/scripts/` for download serving. Starlight's frontmatter handles sidebar ordering and titles:
+
+```markdown
+---
+title: First Steps with MATLAB
+sidebar:
+  order: 1
+---
+
+# Welcome to MATLAB
+
+[existing lesson content here]
+
+## Download Scripts
+
+- [demo_hello.m](/scripts/01-first-steps/demo_hello.m)
+- [demo_variables.m](/scripts/01-first-steps/demo_variables.m)
+```
+
+## Integration Points
+
+### Content Collections <-> Existing Modules
+
+Each of the 8 existing module directories maps to a Starlight docs section. Lesson markdown content is already written -- it needs frontmatter addition and minor formatting adjustments, not a rewrite.
+
+### Progress Store <-> Lesson Pages
+
+The nanostores/persistent store holds a simple map:
+
+```typescript
+// stores/progress.ts
+import { persistentMap } from '@nanostores/persistent'
+
+export const progress = persistentMap<Record<string, boolean>>('course-progress:', {})
+```
+
+Each lesson page includes a `<ProgressButton client:load lessonId="01-01" />` island that reads/writes this store. The sidebar or a dashboard page reads the same store to show completion status.
+
+### .m Files <-> Download Links
+
+The existing .m files are copied (or symlinked at build time) into `public/scripts/`. Each lesson page's markdown includes download links. Expressive Code (built into Starlight) provides copy-to-clipboard on code blocks.
+
+## Version Compatibility Matrix
+
+| Package | Version | Node Requirement | Notes |
+|---------|---------|------------------|-------|
+| astro | ^5.18 | Node 18+ | Stable. Avoid 6.x until ecosystem catches up. |
+| @astrojs/starlight | ^0.37 | (via Astro) | Latest 0.37.x for Astro 5 compat. |
+| @astrojs/preact | ^4.1 | (via Astro) | Maintained by Astro core team. |
+| preact | ^10.x | (via @astrojs/preact) | Auto-installed as peer dependency. |
+| nanostores | ^0.11 | Any | 286 bytes, zero dependencies. |
+| @nanostores/persistent | ^0.10 | Any | ~400 bytes, depends on nanostores. |
 
 ## Sources
 
-- [NTNU NEVR3004 Course Page](https://www.ntnu.edu/studies/courses/NEVR3004) -- Course description, prerequisites, recommended resources
-- [Neural Networks and Brain Function (Oxford Academic)](https://academic.oup.com/book/4417) -- Referenced by NEVR3004 for prerequisite math
-- [Matlab for Neuroscientists (MathWorks listing)](https://www.mathworks.com/academia/books/matlab-for-neuroscientists-wallisch.html) -- Standard Matlab-neuro textbook
-- [An Introductory Course in Computational Neuroscience (MIT Press)](https://mitpress.mit.edu/9780262038256/) -- Matlab-based comp neuro textbook with free code
-- [Theoretical Neuroscience (MIT Press)](https://mitpress.mit.edu/9780262041997/theoretical-neuroscience/) -- Canonical theory reference
-- [Neuromatch Academy Computational Neuroscience](https://compneuro.neuromatch.io/) -- Open-access tutorials (Python, adapt concepts)
-- [Information Theory in Neuroscience Tutorial (eNeuro)](https://www.eneuro.org/content/5/3/ENEURO.0052-18.2018) -- Matlab toolbox for entropy/mutual information
-- [MathWorks: Neuroscience Solutions](https://www.mathworks.com/solutions/neuroscience.html) -- Toolbox overview
-- [MathWorks: When to use script vs live script](https://www.mathworks.com/matlabcentral/discussions/tips/841861-when-to-use-a-script-vs-a-live-script) -- Format decision rationale
-- [MathWorks: pca function](https://www.mathworks.com/help/stats/pca.html) -- PCA toolbox function reference
+- [Astro Documentation: Deploy to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/) -- Official deployment guide
+- [Astro Documentation: Islands Architecture](https://docs.astro.build/en/concepts/islands/) -- Island hydration model
+- [Astro Documentation: Share State Between Islands](https://docs.astro.build/en/recipes/sharing-state-islands/) -- Nanostores recipe
+- [Starlight Documentation: Getting Started](https://starlight.astro.build/getting-started/) -- Starlight setup and features
+- [Starlight Documentation: Overriding Components](https://starlight.astro.build/guides/overriding-components/) -- Custom component injection
+- [Starlight GitHub: Releases](https://github.com/withastro/starlight/releases) -- Version history and changelogs
+- [Astro 6 Release Blog](https://astro.build/blog/astro-6/) -- Why we're waiting on 6.x
+- [@nanostores/persistent GitHub](https://github.com/nanostores/persistent) -- localStorage persistence for nanostores
+- [Shiki Languages](https://shiki.style/languages) -- Confirms MATLAB grammar support via mathworks/MATLAB-Language-grammar
+- [MathWorks MATLAB-Language-grammar](https://github.com/mathworks/MATLAB-Language-grammar) -- Official TextMate grammar used by Shiki
+- [Expressive Code: Syntax Highlighting](https://expressive-code.com/key-features/syntax-highlighting/) -- Starlight's code block rendering engine
+- [Sable/matwably GitHub](https://github.com/Sable/matwably) -- MATLAB WebAssembly research prototype (NOT recommended)
+- [MATLAB Online](https://www.mathworks.com/products/matlab-online.html) -- MathWorks cloud option (requires login)

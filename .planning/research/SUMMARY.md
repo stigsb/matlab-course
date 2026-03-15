@@ -1,93 +1,85 @@
-# Research Summary: Matlab for Computational Neuroscience
+# Research Summary: v1.1 Interactive Web App
 
-**Domain:** Self-paced computational neuroscience education (NEVR3004 prep)
-**Researched:** 2026-03-14
+**Domain:** Interactive course delivery web app (GitHub Pages)
+**Researched:** 2026-03-16 (updated for stack decision)
 **Overall confidence:** HIGH
 
 ## Executive Summary
 
-NEVR3004 (Neural Networks) at NTNU is a computational neuroscience course covering neural coding/decoding, information theory, dimensionality reduction, attractor networks, and neural data analysis. The exam is June 5, 2026 (4-hour written, pen-and-paper via Inspera). The course references Rolls & Treves' "Neural Networks and Brain Function" for prerequisite math and expects students to program in Matlab. Christel is behind and needs to catch up rapidly.
+The v1.1 milestone adds a web delivery layer to the existing 8-module Matlab course. The content is done (45 scripts, 12 lessons, 4 reference cards). The new work is purely about presentation and interaction: render lessons as a navigable website, track progress with localStorage, and provide easy download/copy of .m scripts.
 
-The good news: the technical stack is dead simple. Core Matlab -- no toolboxes required -- covers everything NEVR3004 needs. Vectors, matrices, plotting, basic statistics, eigenvalue decomposition, and simulation loops are all built-in. The Statistics and Machine Learning Toolbox adds a convenient `pca()` function but is not required; teaching PCA from `eig()` and `cov()` is actually better pedagogy.
+The recommended stack is **Astro 5.x + Starlight + Preact islands + nanostores/persistent**. Starlight provides sidebar navigation, full-text search (Pagefind), dark mode, responsive layout, MATLAB syntax highlighting (Shiki), and code copy-to-clipboard out of the box. This covers roughly 80% of the table-stakes features with zero custom code. The remaining 20% -- progress tracking via "Mark as Done" buttons and a progress dashboard -- is implemented as Preact islands using nanostores/persistent for localStorage state management.
 
-The real challenge is not technical but pedagogical. Christel has a psychology background with significant math gaps (linear algebra, calculus, probability), is a strong visual thinker, and has ADHD. Every research dimension -- stack, features, architecture, pitfalls -- points to the same core design principles: visual-first, small chunks, math-in-context, and neuroscience motivation before abstraction. The biggest risk is not "wrong technology" but "wrong teaching approach" -- specifically, front-loading abstract math or creating lessons that are too long/dense.
+Browser-based MATLAB execution is **not feasible** for a static site. There is no production-ready WebAssembly port of MATLAB, and Octave WASM alternatives are experimental. Since Christel already has MATLAB installed via NTNU's campus license, the correct approach is a download workflow: view syntax-highlighted code in the browser, copy or download the .m file, run it in MATLAB Desktop.
 
-The course material format is settled: plain .m scripts (not .mlx) paired with Markdown explanations. This is git-friendly, portable, and simple. Each lesson module contains a README.md for explanations, demo scripts for runnable visualizations, exercises with scaffolding, and solutions for self-checking.
+The biggest risk is **overengineering**. This is a single-user course site, not a learning management system. Every technology choice should be justified by "does this help Christel learn MATLAB faster?" not "is this architecturally elegant?" Starlight makes this easier by providing good defaults that don't need customization.
 
 ## Key Findings
 
-**Stack:** Core Matlab only. No toolboxes required. Key functions: plot(), eig(), cov(), mean(), std(), histogram(), imagesc(), for loops.
+**Stack:** Astro 5.x + Starlight 0.37.x for static site generation, Preact for interactive islands, nanostores/persistent for localStorage progress tracking. Shiki (bundled) for MATLAB syntax highlighting. Deploy via GitHub Actions to GitHub Pages.
 
-**Architecture:** Numbered module folders (01-10), each with lesson.md + demo scripts + exercises + solutions. Self-contained scripts, no dependency chains.
+**Architecture:** Starlight's content collections map directly to the 8 module directories. Existing lesson.md files need frontmatter additions. .m files serve from public/scripts/ for download. Interactive progress tracking runs as isolated Preact islands within an otherwise fully static site.
 
-**Critical pitfall:** Math-first teaching order. Leading with notation instead of visuals will trigger math anxiety and disengage the learner. Always: plot first, explain second, notation last.
+**Critical pitfall:** Safari's ITP can evict localStorage after 7 days of inactivity. Build an export/import progress backup alongside the initial implementation, not as an afterthought.
 
 ## Implications for Roadmap
 
 Based on research, suggested phase structure:
 
-1. **Matlab Survival Kit** (Modules 1-2) - Get her writing and running code with visual output immediately
-   - Addresses: Matlab fundamentals, plotting, vectors, basic indexing
-   - Avoids: Boredom from generic tutorials by using neuroscience-flavored examples
+1. **Project Scaffolding + Content Migration** - Set up Astro/Starlight, migrate lesson markdown with frontmatter, verify all 8 modules render correctly
+   - Addresses: Lesson rendering, sidebar navigation, search, dark mode, responsive layout
+   - Avoids: Overengineering (Pitfall 2) by using Starlight defaults
 
-2. **Core Skills** (Modules 3-5) - Build the math and programming foundation NEVR3004 requires
-   - Addresses: Matrices, linear algebra basics, programming constructs, statistics
-   - Avoids: Cognitive overload by separating new syntax from new math concepts
+2. **Code Display + Downloads** - Configure MATLAB syntax highlighting, add download links for .m files, verify copy-to-clipboard works
+   - Addresses: Code highlighting, file downloads, copy-to-clipboard
+   - Avoids: Attempting browser-based MATLAB execution (Pitfall 4)
 
-3. **NEVR3004 Content: Neural Coding** (Module 6) - First direct course topic
-   - Addresses: Tuning curves, population coding, spike train analysis
-   - Avoids: Assuming math knowledge by building probability concepts inline
+3. **Progress Tracking** - Implement nanostores/persistent store, "Mark as Done" Preact islands, sidebar completion indicators
+   - Addresses: Per-lesson progress, persistent state, module completion visualization
+   - Avoids: localStorage eviction surprise (Pitfall 1) by including export/import backup
 
-4. **NEVR3004 Content: Theory** (Modules 7-8) - Information theory and PCA
-   - Addresses: Entropy, mutual information, dimensionality reduction
-   - Avoids: Black-box PCA by teaching it step-by-step from eigenvectors
+4. **Progress Dashboard + Polish** - Build dashboard page, "continue where you left off", encouraging completion messaging
+   - Addresses: Progress overview, session resumption
+   - Avoids: Punishing dashboard design (Pitfall 7) by showing completed items, not remaining
 
-5. **NEVR3004 Content: Networks + Capstone** (Modules 9-10) - Attractor networks, neural data analysis
-   - Addresses: Hopfield networks, ring attractors, real data workflows
-   - Avoids: Dynamics confusion by using ball-in-bowl animations
-
-6. **Exam Prep** - Notation reading, pen-and-paper practice, summary sheets
-   - Addresses: Written exam format (no computer)
-   - Avoids: Overconfidence from "I can do it in Matlab" when exam requires hand calculations
+5. **Deploy to GitHub Pages** - GitHub Actions workflow, verify production build, test on multiple devices
+   - Addresses: Public accessibility
+   - Avoids: Shipping broken content (Pitfall 10) by requiring end-to-end test first
 
 **Phase ordering rationale:**
-- Phases 1-2 must come first: everything depends on basic Matlab skills and math foundations
-- Phase 3 (neural coding) is the entry point to NEVR3004 content and uses all prior skills
-- Phases 4a and 4b (information theory, PCA) are independent of each other but both require Phase 3
-- Phase 5 (attractor networks) is the most complex and builds on everything
-- Exam prep is ongoing but intensifies at the end
+- Phase 1 must come first: everything depends on content rendering correctly in Starlight
+- Phase 2 naturally follows: code display is part of lesson pages
+- Phase 3 is the core differentiator and depends on lesson pages existing
+- Phase 4 builds on Phase 3's progress store
+- Phase 5 can happen as early as after Phase 1 (deploy early, iterate), but full feature deployment waits for Phase 4
 
 **Research flags for phases:**
-- Phase 4 (Information Theory): Needs careful scaffolding -- probability and logarithms may be entirely new
-- Phase 5 (Attractor Networks): Likely needs deeper research on how to teach dynamics without calculus
-- Phase 6 (Exam Prep): May need to obtain past exam papers to calibrate difficulty
+- Phase 1: May need research on Starlight component overrides if lesson.md format needs adaptation
+- Phase 3: Starlight sidebar override for completion indicators may need investigation
+- Phase 5: Standard GitHub Actions workflow, unlikely to need research
 
 ## Confidence Assessment
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | Core Matlab is unambiguous. NEVR3004 course page confirms Matlab. No toolbox decisions to make. |
-| Features | HIGH | NEVR3004 topics are clearly defined on the course page. Feature list maps directly to course content. |
-| Architecture | HIGH | Module structure follows established patterns from Matlab for Neuroscientists and Neuromatch Academy. |
-| Pitfalls | HIGH | Pedagogical pitfalls well-documented in ADHD learning research and computational neuroscience teaching literature. |
-| Reference materials | MEDIUM | Rolls & Treves confirmed as course reference. Other textbooks are standard in the field but NEVR3004's actual assigned readings are "TBA." |
+| Stack (Astro/Starlight) | HIGH | Astro is the leading content-site framework. Starlight powers docs for Cloudflare, Google, Microsoft, OpenAI. Well-documented GitHub Pages deployment. |
+| Stack (Preact + nanostores) | HIGH | Astro-recommended pattern for interactive islands with shared state. Official recipes in Astro docs. |
+| Features | HIGH | Table stakes are Starlight defaults. Differentiators are well-scoped. Anti-features clearly identified. |
+| Architecture | HIGH | Content collections + islands is Astro's core architecture. No custom patterns needed. |
+| MATLAB in-browser | HIGH | Definitively not feasible for static site. Download workflow is the right answer. |
+| Pitfalls | HIGH | localStorage eviction is well-documented. Overengineering risk is real but Starlight mitigates it. |
 
 ## Gaps to Address
 
-- **Actual NEVR3004 lecture slides and assignments:** Would significantly improve content alignment. Christel may be able to share these.
-- **Past exam papers:** Critical for exam prep phase. Available through NTNU's exam archive or from the course.
-- **Specific Matlab version at NTNU:** Should verify which version is on the NTNU license server (likely R2024a or R2024b).
-- **Attractor network pedagogy without calculus:** Need to research or design visual approaches to teaching network dynamics to someone without differential equations background.
-- **Paul Miller's textbook code:** Freely available Matlab code from "An Introductory Course in Computational Neuroscience" could be adapted for exercises. Worth downloading and reviewing.
+- **Starlight sidebar component override for progress indicators:** How exactly to inject completion checkmarks into Starlight's sidebar. The override API exists but specifics need investigation during Phase 3.
+- **Astro 5 vs 6 timing:** Astro 6 released March 10, 2026. Currently recommending 5.x for stability. May upgrade if Starlight 0.38+ stabilizes during development.
+- **Content migration details:** Exact frontmatter format and whether existing lesson.md files need structural changes beyond adding a YAML header. Needs hands-on testing.
+- **Safari localStorage behavior verification:** Need to verify current Safari ITP behavior with a real test, not just documented claims.
 
 ## Sources
 
-- [NTNU NEVR3004 Course Page](https://www.ntnu.edu/studies/courses/NEVR3004)
-- [Neural Networks and Brain Function (Rolls & Treves, Oxford)](https://academic.oup.com/book/4417)
-- [Matlab for Neuroscientists (Wallisch et al., MathWorks)](https://www.mathworks.com/academia/books/matlab-for-neuroscientists-wallisch.html)
-- [An Introductory Course in Computational Neuroscience (Miller, MIT Press)](https://mitpress.mit.edu/9780262038256/)
-- [Theoretical Neuroscience (Dayan & Abbott, MIT Press)](https://mitpress.mit.edu/9780262041997/theoretical-neuroscience/)
-- [Neuromatch Academy Computational Neuroscience](https://compneuro.neuromatch.io/)
-- [Information Theory in Neuroscience Tutorial (eNeuro)](https://www.eneuro.org/content/5/3/ENEURO.0052-18.2018)
-- [MathWorks Neuroscience Solutions](https://www.mathworks.com/solutions/neuroscience.html)
-- [Coursera: Computational Neuroscience (U. Washington)](https://www.coursera.org/learn/computational-neuroscience)
+All sources documented in individual research files:
+- [STACK.md](/Users/stig/git/stigsb/matlab-course/.planning/research/STACK.md) -- Technology decisions with rationale
+- [FEATURES.md](/Users/stig/git/stigsb/matlab-course/.planning/research/FEATURES.md) -- Feature landscape and prioritization
+- [ARCHITECTURE.md](/Users/stig/git/stigsb/matlab-course/.planning/research/ARCHITECTURE.md) -- System structure and patterns
+- [PITFALLS.md](/Users/stig/git/stigsb/matlab-course/.planning/research/PITFALLS.md) -- Domain pitfalls and mitigations
