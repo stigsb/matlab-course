@@ -18,11 +18,11 @@
 ### Math Foundations (Integrated)
 
 - [x] **MATH-01**: Learner understands vectors as arrows/directions and can visualize them in 2D/3D plots
-- [ ] **MATH-02**: Learner understands matrices as transformations and can visualize what they do to vectors
-- [ ] **MATH-03**: Learner can compute and interpret dot products and matrix multiplication
-- [ ] **MATH-04**: Learner understands eigenvalues/eigenvectors visually (directions that don't change under transformation)
-- [ ] **MATH-05**: Learner understands probability distributions and can plot/interpret histograms
-- [ ] **MATH-06**: Learner can compute and interpret mean, variance, standard deviation, and correlation
+- [x] **MATH-02**: Learner understands matrices as transformations and can visualize what they do to vectors
+- [x] **MATH-03**: Learner can compute and interpret dot products and matrix multiplication
+- [x] **MATH-04**: Learner understands eigenvalues/eigenvectors visually (directions that don't change under transformation)
+- [x] **MATH-05**: Learner understands probability distributions and can plot/interpret histograms
+- [x] **MATH-06**: Learner can compute and interpret mean, variance, standard deviation, and correlation
 - [ ] **MATH-07**: Learner understands logarithms visually and can use them in information-theoretic calculations
 
 ### Neural Coding and Decoding
@@ -98,11 +98,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MATL-06 | Phase 2 | Complete |
 | MATL-07 | Phase 2 | Complete |
 | MATH-01 | Phase 1 | Complete |
-| MATH-02 | Phase 2 | Pending |
-| MATH-03 | Phase 2 | Pending |
-| MATH-04 | Phase 2 | Pending |
-| MATH-05 | Phase 2 | Pending |
-| MATH-06 | Phase 2 | Pending |
+| MATH-02 | Phase 2 | Complete |
+| MATH-03 | Phase 2 | Complete |
+| MATH-04 | Phase 2 | Complete |
+| MATH-05 | Phase 2 | Complete |
+| MATH-06 | Phase 2 | Complete |
 | MATH-07 | Phase 3 | Pending |
 | NEUR-01 | Phase 3 | Pending |
 | NEUR-02 | Phase 3 | Pending |
