@@ -60,11 +60,11 @@ Plans:
   2. Learner can visualize population coding and implement a basic decoder that reads information from neural activity
   3. Learner can compute entropy of a distribution and mutual information between stimulus and response, and explain what these quantities mean
   4. Learner can use logarithms in information-theoretic calculations and explain why log is the right scale
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Module 05: Neural Coding (spike trains, tuning curves, population coding, decoding)
+- [ ] 03-02-PLAN.md — Module 06: Information Theory (logarithms, entropy, mutual information)
 
 ### Phase 4: Dimensionality Reduction and Attractor Networks
 **Goal**: Christel can reduce high-dimensional neural data to interpretable low-dimensional representations and simulate network models of memory and navigation
@@ -91,5 +91,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Matlab Survival Kit | 2/2 | Complete   | 2026-03-15 |
 | 2. Programming and Math Foundations | 2/2 | Complete   | 2026-03-15 |
-| 3. Neural Coding and Information Theory | 0/? | Not started | - |
+| 3. Neural Coding and Information Theory | 0/2 | Not started | - |
 | 4. Dimensionality Reduction and Attractor Networks | 0/? | Not started | - |
