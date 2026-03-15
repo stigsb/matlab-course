@@ -1,83 +1,146 @@
-# Quick Reference: PCA and Attractor Networks
+# PCA and Attractor Networks Quick Reference
 
-## PCA Step-by-Step
+Covers Module 07 (Dimensionality Reduction) and Module 08 (Attractor Networks).
 
-| Step | Code | What It Does |
-|------|------|--------------|
-| 1. Organize data | `data` (rows=obs, cols=vars) | Each row is one time point, each column is one neuron |
-| 2. Mean-center | `centered = data - mean(data)` | Shift data so mean is at origin |
-| 3. Covariance matrix | `C = cov(centered)` | How each pair of variables co-varies (p x p matrix) |
-| 4. Eigendecompose | `[V, D] = eig(C)` | Find principal component directions and their variances |
-| 5. Sort descending | `[vals, idx] = sort(diag(D), 'descend'); V = V(:,idx)` | Put the most important component first |
-| 6. Project | `projected = centered * V(:, 1:k)` | Reduce to k dimensions |
+## PCA (Principal Component Analysis)
 
-## Key Functions
-
-| Function | Purpose | Example |
-|----------|---------|---------|
-| `mean(X)` | Column means for centering | `mu = mean(data)` |
-| `cov(X)` | Covariance matrix (columns = variables) | `C = cov(centered)` |
-| `eig(C)` | Eigenvalues and eigenvectors | `[V, D] = eig(C)` |
-| `diag(D)` | Extract eigenvalues from diagonal matrix | `eigenvalues = diag(D)` |
-| `sort(v, 'descend')` | Sort largest first with index | `[vals, idx] = sort(eigenvalues, 'descend')` |
-| `cumsum(v)` | Cumulative sum (for cumulative variance) | `cumvar = cumsum(var_explained)` |
-
-## Common Pitfalls
-
-| Pitfall | Problem | Fix |
-|---------|---------|-----|
-| `eig()` order | Returns ascending, PCA needs descending | Always `sort(diag(D), 'descend')` |
-| Forgetting mean-center | PCA finds mean direction, not variance direction | Always subtract `mean(data)` before PCA |
-| Rows vs columns | `cov()` expects columns = variables | If 200 timepoints, 3 neurons: matrix is 200x3, NOT 3x200 |
-| Projecting uncentered data | Projection offset from true PC space | Use `centered * V`, not `data * V` |
-
-## Interpreting Results
-
-### Scree Plot
-- Bar chart of eigenvalues (or % variance explained)
-- Look for the **elbow**: where bars suddenly get small
-- Components after the elbow are mostly noise
-
-### Variance Explained Thresholds
-| Threshold | Meaning | Common Use |
-|-----------|---------|------------|
-| 90% | Standard threshold | Most analyses |
-| 95% | Conservative | When you want to preserve more detail |
-| 80% | Aggressive | When you need very few dimensions |
-
-### Variance Explained Formula
 ```matlab
+% Center the data (subtract mean of each variable)
+data_centered = data - mean(data);
+
+% Compute covariance matrix
+C = cov(data);    % or (1/(n-1)) * data_centered' * data_centered
+
+% Eigendecomposition
+[V, D] = eig(C);                   % V = eigenvectors, D = eigenvalues
+eigenvalues = diag(D);
+[eigenvalues, order] = sort(eigenvalues, 'descend');
+V = V(:, order);                   % Sort by decreasing variance
+
+% Project data onto top k components
+k = 2;
+scores = data_centered * V(:, 1:k);   % Projected coordinates
+
+% Variance explained
 var_explained = eigenvalues / sum(eigenvalues) * 100;
 cumulative = cumsum(var_explained);
 ```
 
----
+### Key Operations
 
-## Attractor Networks
+| Operation | Code | What It Does |
+|-----------|------|--------------|
+| Center data | `data - mean(data)` | Remove mean so PCA finds variance directions |
+| Covariance | `cov(data)` | How variables co-vary (symmetric matrix) |
+| Eigendecomposition | `[V,D] = eig(C)` | Find principal directions and their variances |
+| Sort by variance | `sort(diag(D), 'descend')` | Most important component first |
+| Project | `data * V(:,1:k)` | Reduce to k dimensions |
+| Variance explained | `eigenvalues/sum(eigenvalues)*100` | How much each PC captures |
 
-*Covered in Module 08. Placeholders below.*
+### Scree Plot
 
-### Hopfield Network
-
-| Concept | Description |
-|---------|-------------|
-| Purpose | Store and retrieve binary patterns (associative memory) |
-| Neurons | Binary states: +1 or -1 |
-| Weight rule | `W = (1/N) * patterns * patterns'` (Hebbian learning) |
-| Update rule | `S = sign(W * S)` (threshold at zero) |
-| Energy | `E = -0.5 * S' * W * S` (decreases during retrieval) |
-| Capacity | ~0.14 * N patterns for N neurons |
-
-### Ring Attractor
-
-| Concept | Description |
-|---------|-------------|
-| Purpose | Maintain continuous variable (e.g., head direction) |
-| Structure | Neurons arranged on a ring, each with preferred direction |
-| Connectivity | Mexican-hat: local excitation, distant inhibition |
-| Key feature | Stable activity bump that persists without input |
-| Used for | Head direction cells, spatial navigation |
+```matlab
+figure;
+bar(var_explained);
+xlabel('Principal Component');
+ylabel('Variance Explained (%)');
+title('Scree Plot');
+```
 
 ---
 
-*See Module 07 lesson.md for PCA tutorial. See Module 08 lesson.md for attractor network tutorial.*
+## Hopfield Networks
+
+### Learning Rule
+
+| Step | Code | What It Does |
+|------|------|--------------|
+| Store patterns | `P = [p1, p2, p3]` | Each column is a pattern of +1/-1 |
+| Hebbian learning | `W = (1/N) * (P * P')` | "Neurons that fire together wire together" |
+| Remove self-connections | `W(1:N+1:end) = 0` | Diagonal to zero |
+
+### Retrieval
+
+```matlab
+S = noisy_pattern;           % Start from corrupted input
+for iter = 1:max_iters
+    S_new = sign(W * S);     % Multiply and threshold
+    S_new(S_new == 0) = 1;   % Fix sign(0) = 0 pitfall
+    if isequal(S_new, S)
+        break;               % Converged
+    end
+    S = S_new;
+end
+```
+
+### Key Operations
+
+| Operation | Code | What It Does |
+|-----------|------|--------------|
+| Weight matrix | `W = (1/N) * (P * P')` | Hebbian learning from patterns |
+| State update | `S = sign(W * S)` | Each neuron sums inputs, thresholds |
+| Energy | `E = -0.5 * S' * W * S` | Always decreases during retrieval |
+| Overlap | `(1/N) * (S' * pattern)` | +1 = match, -1 = inverted, 0 = random |
+| Capacity | `~0.14 * N` | Max reliable patterns |
+
+### Pitfalls
+
+| Pitfall | Problem | Fix |
+|---------|---------|-----|
+| `sign(0)` | Returns 0, but network needs +1/-1 | `S(S==0) = 1` after `sign()` |
+| Self-connections | Trivial feedback locks states | `W(1:N+1:end) = 0` |
+| Too many patterns | Memories interfere, retrieval fails | Keep below `0.14 * N` |
+
+---
+
+## Ring Attractors
+
+### Components
+
+| Component | Code | Purpose |
+|-----------|------|---------|
+| Neuron positions | `theta = linspace(0, 2*pi, N+1); theta(1:end-1)` | Preferred directions on ring |
+| Mexican-hat weights | `W(i,j) = cos(theta(i)-theta(j)) - 0.5` | Excite neighbors, inhibit distant |
+| No self-connections | `W(1:N+1:end) = 0` | Prevent trivial feedback |
+| Initial bump | `exp(5*cos(theta - center))` | Von Mises-shaped activity |
+| Normalize | `activity / sum(activity)` | Prevent blow-up |
+
+### Simulation Loop
+
+```matlab
+for step = 1:n_steps
+    input = (W * activity')';
+    activity = activity + (dt/tau) * (-activity + input);
+    activity = max(0, activity);          % Rectify
+    activity = activity / sum(activity);  % Normalize
+end
+```
+
+### Parameters
+
+| Parameter | Typical Value | Effect |
+|-----------|--------------|--------|
+| N | 100 | Number of neurons on ring |
+| tau | 1 | Time constant (higher = slower) |
+| dt | 0.1 | Time step (must be < tau) |
+| Offset (-0.5) | Adjustable | Controls inhibition strength |
+
+### Stability Tips
+
+- Always normalize activity each step to prevent blow-up
+- Rectify with `max(0, ...)` -- firing rates cannot be negative
+- Check `sum(activity) > 0` before normalizing to avoid division by zero
+- Use `imagesc` heatmap (time x direction) to verify stable bump
+
+---
+
+## Connecting PCA and Attractors
+
+| PCA Shows... | Attractors Explain... |
+|-------------|----------------------|
+| Data lives in low dimensions | Connectivity creates low-D manifolds |
+| Principal components capture variance | Attractor valleys constrain activity |
+| Scree plot drops off | Only a few attractor states exist |
+| Neural trajectories stay near manifold | Energy landscape keeps states in valleys |
+
+**Key insight:** PCA describes the *shape* of neural activity (low-dimensional). Attractor networks explain the *mechanism* (connectivity creates energy valleys that constrain dynamics to low-dimensional manifolds).
