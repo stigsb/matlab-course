@@ -23,7 +23,7 @@
 - [x] **MATH-04**: Learner understands eigenvalues/eigenvectors visually (directions that don't change under transformation)
 - [x] **MATH-05**: Learner understands probability distributions and can plot/interpret histograms
 - [x] **MATH-06**: Learner can compute and interpret mean, variance, standard deviation, and correlation
-- [ ] **MATH-07**: Learner understands logarithms visually and can use them in information-theoretic calculations
+- [x] **MATH-07**: Learner understands logarithms visually and can use them in information-theoretic calculations
 
 ### Neural Coding and Decoding
 
@@ -34,9 +34,9 @@
 
 ### Information Theory
 
-- [ ] **INFO-01**: Learner can compute entropy of a discrete distribution and explain what it measures
-- [ ] **INFO-02**: Learner can compute mutual information between stimulus and neural response
-- [ ] **INFO-03**: Learner can visualize information-theoretic quantities with plots and diagrams
+- [x] **INFO-01**: Learner can compute entropy of a discrete distribution and explain what it measures
+- [x] **INFO-02**: Learner can compute mutual information between stimulus and neural response
+- [x] **INFO-03**: Learner can visualize information-theoretic quantities with plots and diagrams
 
 ### Dimensionality Reduction
 
@@ -103,14 +103,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MATH-04 | Phase 2 | Complete |
 | MATH-05 | Phase 2 | Complete |
 | MATH-06 | Phase 2 | Complete |
-| MATH-07 | Phase 3 | Pending |
+| MATH-07 | Phase 3 | Complete |
 | NEUR-01 | Phase 3 | Complete |
 | NEUR-02 | Phase 3 | Complete |
 | NEUR-03 | Phase 3 | Complete |
 | NEUR-04 | Phase 3 | Complete |
-| INFO-01 | Phase 3 | Pending |
-| INFO-02 | Phase 3 | Pending |
-| INFO-03 | Phase 3 | Pending |
+| INFO-01 | Phase 3 | Complete |
+| INFO-02 | Phase 3 | Complete |
+| INFO-03 | Phase 3 | Complete |
 | DIMR-01 | Phase 4 | Pending |
 | DIMR-02 | Phase 4 | Pending |
 | DIMR-03 | Phase 4 | Pending |
