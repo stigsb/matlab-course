@@ -40,9 +40,9 @@
 
 ### Dimensionality Reduction
 
-- [ ] **DIMR-01**: Learner understands why high-dimensional neural data needs dimensionality reduction
-- [ ] **DIMR-02**: Learner can perform PCA step-by-step (covariance matrix → eigenvalues → projection)
-- [ ] **DIMR-03**: Learner can interpret PCA results (variance explained, principal components) with visualizations
+- [x] **DIMR-01**: Learner understands why high-dimensional neural data needs dimensionality reduction
+- [x] **DIMR-02**: Learner can perform PCA step-by-step (covariance matrix → eigenvalues → projection)
+- [x] **DIMR-03**: Learner can interpret PCA results (variance explained, principal components) with visualizations
 
 ### Attractor Networks
 
@@ -111,9 +111,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFO-01 | Phase 3 | Complete |
 | INFO-02 | Phase 3 | Complete |
 | INFO-03 | Phase 3 | Complete |
-| DIMR-01 | Phase 4 | Pending |
-| DIMR-02 | Phase 4 | Pending |
-| DIMR-03 | Phase 4 | Pending |
+| DIMR-01 | Phase 4 | Complete |
+| DIMR-02 | Phase 4 | Complete |
+| DIMR-03 | Phase 4 | Complete |
 | ATTR-01 | Phase 4 | Pending |
 | ATTR-02 | Phase 4 | Pending |
 | ATTR-03 | Phase 4 | Pending |

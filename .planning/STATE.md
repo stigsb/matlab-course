@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 03-01-PLAN.md
-last_updated: "2026-03-15T12:41:28.371Z"
-last_activity: 2026-03-15 — Completed 03-01 (Neural Coding)
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-15T13:05:32.624Z"
+last_activity: 2026-03-15 — Completed 04-01 (Dimensionality Reduction)
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 6
-  completed_plans: 6
-  percent: 83
+  total_plans: 8
+  completed_plans: 7
+  percent: 88
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-14)
 
 **Core value:** Christel can independently write and understand Matlab code for neural data analysis and computational neuroscience modeling
-**Current focus:** Phase 3: Neural Coding and Information Theory
+**Current focus:** Phase 4: Dimensionality Reduction and Attractor Networks
 
 ## Current Position
 
-Phase: 3 of 4 (Neural Coding and Information Theory)
+Phase: 4 of 4 (Dimensionality Reduction and Attractor Networks)
 Plan: 1 of 2 in current phase
 Status: In Progress
-Last activity: 2026-03-15 — Completed 03-01 (Neural Coding)
+Last activity: 2026-03-15 — Completed 04-01 (Dimensionality Reduction)
 
-Progress: [████████░░] 83%
+Progress: [█████████░] 88%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 7
 - Average duration: 4 min
-- Total execution time: 19 min
+- Total execution time: 27 min
 
 **By Phase:**
 
@@ -55,6 +55,7 @@ Progress: [████████░░] 83%
 | Phase 02-programming-and-math-foundations P01 | 3min | 2 tasks | 8 files |
 | Phase 02 P02 | 4min | 2 tasks | 7 files |
 | Phase 03-neural-coding P01 | 4min | 2 tasks | 8 files |
+| Phase 04-dim-reduction P01 | 4min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,9 @@ Recent decisions affecting current work:
 - [Phase 02]: Eigenvalues taught as directions that survive with visual-first approach before notation bridge
 - 03-01: Population vector decoder as standalone function file (decode_direction.m) for reuse
 - 03-01: Reference card includes placeholder section for information theory (Module 06)
+- 04-01: Exercise has 12 TODOs across 4 parts with optional reconstruction challenge
+- 04-01: Reference card (pca_attractors.md) includes attractor network placeholders for Plan 04-02
+- 04-01: Used hsv colormap for neural PCA to emphasize circular stimulus structure
 
 ### Pending Todos
 
@@ -90,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-15T12:24:48Z
-Stopped at: Completed 03-01-PLAN.md
+Last session: 2026-03-15T13:05:32.621Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
