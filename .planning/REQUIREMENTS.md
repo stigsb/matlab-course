@@ -46,9 +46,9 @@
 
 ### Attractor Networks
 
-- [ ] **ATTR-01**: Learner understands attractor dynamics visually (energy landscapes, ball-in-bowl)
-- [ ] **ATTR-02**: Learner can implement and simulate a simple Hopfield network for memory storage
-- [ ] **ATTR-03**: Learner can implement and visualize a ring attractor for head direction / navigation
+- [x] **ATTR-01**: Learner understands attractor dynamics visually (energy landscapes, ball-in-bowl)
+- [x] **ATTR-02**: Learner can implement and simulate a simple Hopfield network for memory storage
+- [x] **ATTR-03**: Learner can implement and visualize a ring attractor for head direction / navigation
 
 ### Pedagogy
 
@@ -114,9 +114,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DIMR-01 | Phase 4 | Complete |
 | DIMR-02 | Phase 4 | Complete |
 | DIMR-03 | Phase 4 | Complete |
-| ATTR-01 | Phase 4 | Pending |
-| ATTR-02 | Phase 4 | Pending |
-| ATTR-03 | Phase 4 | Pending |
+| ATTR-01 | Phase 4 | Complete |
+| ATTR-02 | Phase 4 | Complete |
+| ATTR-03 | Phase 4 | Complete |
 | PEDA-01 | Phase 1 | Complete |
 | PEDA-02 | Phase 1 | Complete |
 | PEDA-03 | Phase 1 | Complete |

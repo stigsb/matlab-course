@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-03-15T13:05:32.624Z"
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-15T13:06:44.693Z"
 last_activity: 2026-03-15 — Completed 04-01 (Dimensionality Reduction)
 progress:
   total_phases: 4
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 88
 ---
 
@@ -56,6 +56,7 @@ Progress: [█████████░] 88%
 | Phase 02 P02 | 4min | 2 tasks | 7 files |
 | Phase 03-neural-coding P01 | 4min | 2 tasks | 8 files |
 | Phase 04-dim-reduction P01 | 4min | 2 tasks | 7 files |
+| Phase 04 P02 | 5min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,8 @@ Recent decisions affecting current work:
 - 04-01: Exercise has 12 TODOs across 4 parts with optional reconstruction challenge
 - 04-01: Reference card (pca_attractors.md) includes attractor network placeholders for Plan 04-02
 - 04-01: Used hsv colormap for neural PCA to emphasize circular stimulus structure
+- [Phase 04]: Reference card created fresh with PCA and attractor sections (04-01 had not created it)
+- [Phase 04]: Exercise uses cross/frame patterns distinct from demo; optional challenge tests capacity overload
 
 ### Pending Todos
 
@@ -94,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-15T13:05:32.621Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-03-15T13:06:44.691Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None
