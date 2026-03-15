@@ -27,10 +27,10 @@
 
 ### Neural Coding and Decoding
 
-- [ ] **NEUR-01**: Learner can plot and interpret tuning curves from simulated neural data
-- [ ] **NEUR-02**: Learner understands population coding and can visualize how groups of neurons encode information
-- [ ] **NEUR-03**: Learner can generate and analyze simulated spike trains
-- [ ] **NEUR-04**: Learner can implement a basic neural decoder that reads information from population activity
+- [x] **NEUR-01**: Learner can plot and interpret tuning curves from simulated neural data
+- [x] **NEUR-02**: Learner understands population coding and can visualize how groups of neurons encode information
+- [x] **NEUR-03**: Learner can generate and analyze simulated spike trains
+- [x] **NEUR-04**: Learner can implement a basic neural decoder that reads information from population activity
 
 ### Information Theory
 
@@ -104,10 +104,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MATH-05 | Phase 2 | Complete |
 | MATH-06 | Phase 2 | Complete |
 | MATH-07 | Phase 3 | Pending |
-| NEUR-01 | Phase 3 | Pending |
-| NEUR-02 | Phase 3 | Pending |
-| NEUR-03 | Phase 3 | Pending |
-| NEUR-04 | Phase 3 | Pending |
+| NEUR-01 | Phase 3 | Complete |
+| NEUR-02 | Phase 3 | Complete |
+| NEUR-03 | Phase 3 | Complete |
+| NEUR-04 | Phase 3 | Complete |
 | INFO-01 | Phase 3 | Pending |
 | INFO-02 | Phase 3 | Pending |
 | INFO-03 | Phase 3 | Pending |

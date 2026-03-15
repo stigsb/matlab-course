@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-15T11:55:44.899Z"
-last_activity: 2026-03-15 — Completed 02-02 (Math Foundations)
+status: in-progress
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-15T12:24:48Z"
+last_activity: 2026-03-15 — Completed 03-01 (Neural Coding)
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
-  percent: 75
+  total_plans: 6
+  completed_plans: 5
+  percent: 83
 ---
 
 # Project State
@@ -21,38 +21,40 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-14)
 
 **Core value:** Christel can independently write and understand Matlab code for neural data analysis and computational neuroscience modeling
-**Current focus:** Phase 2: Programming and Math Foundations
+**Current focus:** Phase 3: Neural Coding and Information Theory
 
 ## Current Position
 
-Phase: 2 of 4 (Programming and Math Foundations)
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-15 — Completed 02-02 (Math Foundations)
+Phase: 3 of 4 (Neural Coding and Information Theory)
+Plan: 1 of 2 in current phase
+Status: In Progress
+Last activity: 2026-03-15 — Completed 03-01 (Neural Coding)
 
-Progress: [████████░░] 75%
+Progress: [████████░░] 83%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 5
 - Average duration: 4 min
-- Total execution time: 11 min
+- Total execution time: 19 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Matlab Survival Kit | 2 | 8 min | 4 min |
-| 02 Programming and Math | 1 | 3 min | 3 min |
+| 02 Programming and Math | 2 | 7 min | 4 min |
+| 03 Neural Coding & Info Theory | 1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min), 01-02 (5 min), 02-01 (3 min)
+- Last 5 plans: 01-01 (3 min), 01-02 (5 min), 02-01 (3 min), 02-02 (4 min), 03-01 (4 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
 | Phase 02-programming-and-math-foundations P01 | 3min | 2 tasks | 8 files |
 | Phase 02 P02 | 4min | 2 tasks | 7 files |
+| Phase 03-neural-coding P01 | 4min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -73,6 +75,8 @@ Recent decisions affecting current work:
 - 02-01: Demo scripts use relatable data: cat BMIs, plant heights, reaction times
 - [Phase 02]: Exercise uses 12 TODOs across 4 parts including challenge with eigenvector prediction
 - [Phase 02]: Eigenvalues taught as directions that survive with visual-first approach before notation bridge
+- 03-01: Population vector decoder as standalone function file (decode_direction.m) for reuse
+- 03-01: Reference card includes placeholder section for information theory (Module 06)
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-15T11:36:32.051Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-15T12:24:48Z
+Stopped at: Completed 03-01-PLAN.md
 Resume file: None
