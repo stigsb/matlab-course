@@ -45,11 +45,11 @@ Plans:
   3. Learner can multiply matrices, compute dot products, and explain what these operations do visually
   4. Learner can compute mean, variance, and correlation of a dataset and interpret the results using plots
   5. Learner can explain eigenvalues/eigenvectors as "directions that survive a transformation" and visualize them
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Module 03: Programming Tools (functions, loops, conditionals)
+- [ ] 02-02-PLAN.md — Module 04: Math Foundations (matrix transforms, statistics, eigenvalues)
 
 ### Phase 3: Neural Coding and Information Theory
 **Goal**: Christel can analyze how neurons encode and transmit information, using both neural coding analysis and information-theoretic measures
@@ -90,6 +90,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Matlab Survival Kit | 2/2 | Complete   | 2026-03-15 |
-| 2. Programming and Math Foundations | 0/? | Not started | - |
+| 2. Programming and Math Foundations | 0/2 | Not started | - |
 | 3. Neural Coding and Information Theory | 0/? | Not started | - |
 | 4. Dimensionality Reduction and Attractor Networks | 0/? | Not started | - |
