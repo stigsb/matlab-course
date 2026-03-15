@@ -29,11 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Learner can visualize 2D vectors as arrows and describe what direction and magnitude mean
   4. Every lesson script produces visual output within the first 5 minutes of running it
   5. Lesson format is established: small chunks, visual-first, scaffolded exercises, relatable analogies
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Module 01: First Steps (variables, types, scripts, first plots)
+- [ ] 01-02-PLAN.md — Module 02: Vectors and Plotting (vectors, matrices, indexing, all plot types, vectors as arrows)
 
 ### Phase 2: Programming and Math Foundations
 **Goal**: Christel can write structured Matlab programs using functions and loops, and understands the linear algebra and statistics concepts that NEVR3004 builds on
@@ -89,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Matlab Survival Kit | 0/? | Not started | - |
+| 1. Matlab Survival Kit | 0/2 | Planning complete | - |
 | 2. Programming and Math Foundations | 0/? | Not started | - |
 | 3. Neural Coding and Information Theory | 0/? | Not started | - |
 | 4. Dimensionality Reduction and Attractor Networks | 0/? | Not started | - |
