@@ -111,37 +111,76 @@ decoded_dir = decode_direction(responses, pref_dirs);
 decoded_dir = mod(decoded_dir, 360);  % convert to 0-360 range
 ```
 
-## Information Theory (Placeholder for Module 06)
+## Logarithms
 
-### Entropy
+| Function    | Base | Unit                | Example              |
+|-------------|------|---------------------|----------------------|
+| `log2(x)`   | 2    | bits                | `log2(8) = 3`        |
+| `log(x)`    | e    | nats                | `log(exp(1)) = 1`    |
+| `log10(x)`  | 10   | orders of magnitude | `log10(1000) = 3`    |
+
+**"How many times do you double to get here?"** -- log2(8) = 3 because 2^3 = 8.
+
+**Key properties:**
+```matlab
+log2(a * b) == log2(a) + log2(b)   % multiplication -> addition
+log2(a^n)   == n * log2(a)         % powers -> multiplication
+log2(1)     == 0                    % log of 1 is always 0
+```
+
+**Change of base:** `log_b(x) = log(x) / log(b)`
+
+## Entropy
 
 ```matlab
 % Shannon entropy: H = -sum(p * log2(p))
-% Handle 0*log(0) = 0 convention
+% CRITICAL: handle 0*log(0) = 0 convention by filtering zeros
 H = -sum(p(p > 0) .* log2(p(p > 0)));
 
-% Fair coin: H = 1.0 bits
-% Biased coin (90/10): H = 0.47 bits
-% Certain outcome: H = 0 bits
+% Or use the reusable function:
+H = compute_entropy(p);   % in 06-information-theory/compute_entropy.m
 ```
 
-### Mutual Information
+| Distribution           | H (bits) | Note                      |
+|------------------------|----------|---------------------------|
+| Fair coin [0.5, 0.5]  | 1.00     | 1 yes/no question         |
+| Biased coin [0.9, 0.1]| 0.47     | Mostly predictable        |
+| Fair N-sided die       | log2(N)  | Maximum for N outcomes    |
+| Certain [1, 0, ...]   | 0.00     | No surprise               |
+
+**Maximum entropy:** Uniform distribution. H_max = log2(N) for N outcomes.
+
+## Mutual Information
 
 ```matlab
-% MI(X;Y) = H(Y) - H(Y|X)
-% How much does knowing X reduce uncertainty about Y?
-% Full computation covered in Module 06.
+% MI = H(response) - H(response | stimulus)
+% How much does knowing the stimulus reduce uncertainty about the response?
+
+% 1. Build joint probability matrix
+joint_prob = joint_counts / sum(joint_counts(:));
+
+% 2. Marginal distributions
+p_resp = sum(joint_prob, 1);     % sum over stimuli
+p_stim = sum(joint_prob, 2)';    % sum over responses
+
+% 3. H(response)
+H_resp = compute_entropy(p_resp);
+
+% 4. H(response | stimulus) -- weighted average of conditional entropies
+H_resp_given_stim = 0;
+for s = 1:n_stimuli
+    p_r_given_s = joint_prob(s,:) / p_stim(s);
+    H_resp_given_stim = H_resp_given_stim + ...
+        p_stim(s) * compute_entropy(p_r_given_s);
+end
+
+% 5. Mutual information
+MI = H_resp - H_resp_given_stim;
 ```
 
-### Logarithms
+**Sanity check:** Shuffle stimulus-response pairs with `randperm()`. MI should drop to ~0.
 
-```matlab
-log2(x)    % base-2 (bits) -- used for information theory
-log(x)     % natural log (nats)
-log10(x)   % base-10
-```
-
-**"How many times do you double to get here?"** -- log2(8) = 3 because 2^3 = 8.
+**Equivalent formula:** MI = H(S) + H(R) - H(S,R)
 
 ## Common Gotchas
 
@@ -150,9 +189,12 @@ log10(x)   % base-10
 | Degrees vs radians | Tuning curve shape is wrong | Use `cosd()`/`sind()` for degree inputs |
 | Negative firing rates | Rates below 0 | Add `max(responses, 0)` |
 | `0 * log2(0)` | Entropy returns NaN | Filter: `p(p > 0) .* log2(p(p > 0))` |
+| `log()` instead of `log2()` | Entropy in nats, not bits | Use `log2()` for bits |
 | Rate vs probability | 100% spikes every step | Multiply by dt: `rate * dt` not `rate` |
 | `atan` vs `atan2` | Wrong quadrant | Always use `atan2d(y, x)` |
 | Probabilities don't sum to 1 | Entropy too large | Normalize: `p = counts / sum(counts)` |
+| Too few trials for MI | MI biased upward | Need ~10+ trials per response bin |
+| `histc` / `hist` | Deprecated functions | Use `histcounts` / `histogram` |
 
 ## Key Matlab Functions
 
@@ -165,10 +207,13 @@ log10(x)   % base-10
 | `atan2d(y, x)` | Angle from components (degrees) | Decoding direction |
 | `deg2rad(x)` | Convert degrees to radians | For `polarplot` |
 | `polarplot(theta, r)` | Polar coordinate plot | Tuning curves |
-| `imagesc(data)` | Heatmap visualization | Population activity |
+| `imagesc(data)` | Heatmap visualization | Population activity, joint prob |
 | `colorbar` | Add color scale | After `imagesc` |
-| `histcounts(data, edges)` | Bin counts | PSTH, ISI histogram |
+| `histcounts(data, edges)` | Bin counts | PSTH, ISI, probability estimation |
 | `histogram(data, n)` | Plot histogram directly | ISI distribution |
 | `stem(x, y)` | Discrete data plot | Spike raster |
 | `quiver(x, y, u, v)` | Arrow/vector plot | Population vector |
 | `log2(x)` | Base-2 logarithm | Entropy (bits) |
+| `semilogy(x, y)` | Log y-axis plot | Exponential as straight line |
+| `repelem(v, n)` | Repeat elements | Balanced stimulus sequence |
+| `randperm(n)` | Random permutation | Shuffle control for MI |
