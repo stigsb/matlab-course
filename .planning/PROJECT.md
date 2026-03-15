@@ -2,7 +2,18 @@
 
 ## What This Is
 
-A personalized, visual-first course that teaches Matlab and the necessary math foundations to a neuroscience student (Christel) who needs to rapidly get productive in NEVR3004 (Neural Networks) at NTNU. The course covers 8 modules from basic variables through attractor networks, with written lessons paired with interactive Matlab scripts (.m files) that emphasize plots, diagrams, and animations to make abstract concepts concrete.
+A personalized, visual-first course that teaches Matlab and the necessary math foundations to a neuroscience student (Christel) who needs to rapidly get productive in NEVR3004 (Neural Networks) at NTNU. The course covers 8 modules from basic variables through attractor networks, delivered as an interactive web app on GitHub Pages with progress tracking and downloadable Matlab scripts.
+
+## Current Milestone: v1.1 Interactive Version
+
+**Goal:** Deploy the course as an interactive web app with guided lesson flow and progress tracking.
+
+**Target features:**
+- Static web app on GitHub Pages serving all course content
+- Guided lesson flow with rendered markdown and embedded code
+- Browser-based Matlab coding if feasible, otherwise download/upload workflow
+- localStorage-based progress tracking with "Done" buttons per lesson/exercise
+- Progress dashboard showing readiness across all modules
 
 ## Core Value
 
@@ -28,6 +39,11 @@ Christel can independently write and understand Matlab code for neural data anal
 
 ### Active
 
+- [ ] Interactive web app on GitHub Pages serving course content
+- [ ] Guided lesson flow with rendered lessons and embedded code highlighting
+- [ ] Browser-based Matlab coding or download/upload workflow for .m files
+- [ ] localStorage progress tracking with "Done" buttons per lesson/exercise
+- [ ] Progress dashboard showing module completion status
 - [ ] Notation reading practice — connect visual understanding to textbook math notation
 - [ ] Pen-and-paper problem sets mimicking exam format
 - [ ] Summary/reference sheets for each topic (quick-reference cards exist, may need exam focus)
@@ -56,7 +72,7 @@ Christel can independently write and understand Matlab code for neural data anal
 
 ## Constraints
 
-- **Timeline**: Urgent — course is already underway, she needs to catch up
+- **Timeline**: Christel needs Matlab proficiency for her master's thesis starting September 2026
 - **Math level**: Basic algebra only — all higher math must be taught from scratch, visually, in context
 - **Cognitive load**: Small chunks, frequent visual reinforcement, no walls of text or abstract notation without visualization
 - **Tech stack**: Matlab .m scripts + markdown lessons (no .mlx — stick to plain scripts for portability)
@@ -77,4 +93,4 @@ Christel can independently write and understand Matlab code for neural data anal
 | Reference cards as lookup tables, not tutorial prose | Quick scanning during exercises, not re-reading lessons | ✓ Good |
 
 ---
-*Last updated: 2026-03-15 after v1.0 milestone*
+*Last updated: 2026-03-15 after v1.1 milestone started*
