@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-15T11:11:44.675Z"
-last_activity: 2026-03-15 — Completed 01-02 (Vectors and Plotting)
+status: in-progress
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-15T11:34:23Z"
+last_activity: 2026-03-15 — Completed 02-01 (Programming Tools)
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
-  percent: 100
+  total_plans: 4
+  completed_plans: 3
+  percent: 75
 ---
 
 # Project State
@@ -21,36 +21,37 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-14)
 
 **Core value:** Christel can independently write and understand Matlab code for neural data analysis and computational neuroscience modeling
-**Current focus:** Phase 1: Matlab Survival Kit
+**Current focus:** Phase 2: Programming and Math Foundations
 
 ## Current Position
 
-Phase: 1 of 4 (Matlab Survival Kit)
-Plan: 2 of 2 in current phase
-Status: Phase Complete
-Last activity: 2026-03-15 — Completed 01-02 (Vectors and Plotting)
+Phase: 2 of 4 (Programming and Math Foundations)
+Plan: 1 of 2 in current phase
+Status: In Progress
+Last activity: 2026-03-15 — Completed 02-01 (Programming Tools)
 
-Progress: [██████████] 100%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: 4 min
-- Total execution time: 8 min
+- Total execution time: 11 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Matlab Survival Kit | 2 | 8 min | 4 min |
+| 02 Programming and Math | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (3 min), 01-02 (5 min)
+- Last 5 plans: 01-01 (3 min), 01-02 (5 min), 02-01 (3 min)
 - Trend: Consistent
 
 *Updated after each plan completion*
-| Phase 01-matlab-survival-kit P02 | 5min | 2 tasks | 8 files |
+| Phase 02-programming-and-math-foundations P01 | 3min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - 01-01: Exercise has 7 TODOs across 4 parts with optional challenge section
 - 01-01: Reference card organized as lookup tables, not tutorial prose
 - [Phase 01-matlab-survival-kit]: Module 02: 13 TODOs in vectors exercise for comprehensive coverage; commented-out verification pattern
+- 02-01: Exercise has 12 TODOs across 4 parts with optional challenge bar chart
+- 02-01: Both local functions and function files demonstrated; lesson teaches local first then file-based
+- 02-01: Demo scripts use relatable data: cat BMIs, plant heights, reaction times
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-15T11:10:14.329Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-03-15T11:34:23Z
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None

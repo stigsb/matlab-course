@@ -11,9 +11,9 @@
 - [x] **MATL-02**: Learner can use indexing and slicing to access parts of vectors and matrices
 - [x] **MATL-03**: Learner can write, save, and run .m script files
 - [x] **MATL-04**: Learner can create plots (line, scatter, bar, imagesc) with labels and titles
-- [ ] **MATL-05**: Learner can write functions that accept inputs and return outputs
-- [ ] **MATL-06**: Learner can use for-loops and while-loops to repeat computations
-- [ ] **MATL-07**: Learner can use if/else conditionals to control program flow
+- [x] **MATL-05**: Learner can write functions that accept inputs and return outputs
+- [x] **MATL-06**: Learner can use for-loops and while-loops to repeat computations
+- [x] **MATL-07**: Learner can use if/else conditionals to control program flow
 
 ### Math Foundations (Integrated)
 
@@ -94,9 +94,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | MATL-02 | Phase 1 | Complete |
 | MATL-03 | Phase 1 | Complete |
 | MATL-04 | Phase 1 | Complete |
-| MATL-05 | Phase 2 | Pending |
-| MATL-06 | Phase 2 | Pending |
-| MATL-07 | Phase 2 | Pending |
+| MATL-05 | Phase 2 | Complete |
+| MATL-06 | Phase 2 | Complete |
+| MATL-07 | Phase 2 | Complete |
 | MATH-01 | Phase 1 | Complete |
 | MATH-02 | Phase 2 | Pending |
 | MATH-03 | Phase 2 | Pending |
