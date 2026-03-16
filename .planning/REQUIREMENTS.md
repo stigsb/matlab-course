@@ -10,10 +10,10 @@ Requirements for interactive web version. Each maps to roadmap phases.
 ### Content Delivery
 
 - [ ] **DLVR-01**: User can read course lessons as web pages with formatted text and code blocks
-- [ ] **DLVR-02**: User can navigate between modules and lessons via sidebar
-- [ ] **DLVR-03**: User can search across all course content
-- [ ] **DLVR-04**: User can toggle dark mode
-- [ ] **DLVR-05**: User can use the site on mobile devices with responsive layout
+- [x] **DLVR-02**: User can navigate between modules and lessons via sidebar
+- [x] **DLVR-03**: User can search across all course content
+- [x] **DLVR-04**: User can toggle dark mode
+- [x] **DLVR-05**: User can use the site on mobile devices with responsive layout
 
 ### Code Workflow
 
@@ -33,8 +33,8 @@ Requirements for interactive web version. Each maps to roadmap phases.
 
 ### Deployment
 
-- [ ] **DEPL-01**: Site is deployed to GitHub Pages and publicly accessible
-- [ ] **DEPL-02**: Site rebuilds and deploys automatically on push via GitHub Actions
+- [x] **DEPL-01**: Site is deployed to GitHub Pages and publicly accessible
+- [x] **DEPL-02**: Site rebuilds and deploys automatically on push via GitHub Actions
 
 ## Future Requirements
 
@@ -65,10 +65,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | DLVR-01 | Phase 5 | Pending |
-| DLVR-02 | Phase 5 | Pending |
-| DLVR-03 | Phase 5 | Pending |
-| DLVR-04 | Phase 5 | Pending |
-| DLVR-05 | Phase 5 | Pending |
+| DLVR-02 | Phase 5 | Complete |
+| DLVR-03 | Phase 5 | Complete |
+| DLVR-04 | Phase 5 | Complete |
+| DLVR-05 | Phase 5 | Complete |
 | CODE-01 | Phase 5 | Pending |
 | CODE-02 | Phase 5 | Pending |
 | CODE-03 | Phase 5 | Pending |
@@ -79,8 +79,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PROG-03 | Phase 6 | Pending |
 | PROG-04 | Phase 6 | Pending |
 | PROG-05 | Phase 6 | Pending |
-| DEPL-01 | Phase 5 | Pending |
-| DEPL-02 | Phase 5 | Pending |
+| DEPL-01 | Phase 5 | Complete |
+| DEPL-02 | Phase 5 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 17 total

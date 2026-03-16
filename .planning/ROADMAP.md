@@ -44,7 +44,7 @@
 **Plans:** 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Scaffold Astro/Starlight project, configure for GitHub Pages, create landing page and deploy workflow
+- [x] 05-01-PLAN.md — Scaffold Astro/Starlight project, configure for GitHub Pages, create landing page and deploy workflow
 - [ ] 05-02-PLAN.md — Migrate all 8 lessons, 4 reference cards, and 45 .m scripts into the site
 - [ ] 05-03-PLAN.md — Deploy to GitHub Pages and visual verification of complete site
 
@@ -86,6 +86,6 @@ Phases execute in numeric order: 5 -> 5.x -> 6 -> 6.x -> 7
 | 2. Programming and Math Foundations | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 3. Neural Coding and Information Theory | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 4. Dimensionality Reduction and Attractor Networks | v1.0 | 2/2 | Complete | 2026-03-15 |
-| 5. Site Foundation and Deploy | v1.1 | 0/3 | Not started | - |
+| 5. Site Foundation and Deploy | v1.1 | 1/3 | In progress | - |
 | 6. Progress Tracking | v1.1 | 0/? | Not started | - |
 | 7. AI-Powered Feedback | v1.1 | 0/? | Not started | - |
