@@ -4,8 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://stigsb.github.io',
-	base: '/matlab-course',
+	site: 'https://matlab-survival-kit.pages.dev',
 	integrations: [
 		starlight({
 			title: 'MATLAB for Computational Neuroscience',
