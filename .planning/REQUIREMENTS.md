@@ -64,29 +64,29 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DLVR-01 | — | Pending |
-| DLVR-02 | — | Pending |
-| DLVR-03 | — | Pending |
-| DLVR-04 | — | Pending |
-| DLVR-05 | — | Pending |
-| CODE-01 | — | Pending |
-| CODE-02 | — | Pending |
-| CODE-03 | — | Pending |
-| CODE-04 | — | Pending |
-| CODE-05 | — | Pending |
-| PROG-01 | — | Pending |
-| PROG-02 | — | Pending |
-| PROG-03 | — | Pending |
-| PROG-04 | — | Pending |
-| PROG-05 | — | Pending |
-| DEPL-01 | — | Pending |
-| DEPL-02 | — | Pending |
+| DLVR-01 | Phase 5 | Pending |
+| DLVR-02 | Phase 5 | Pending |
+| DLVR-03 | Phase 5 | Pending |
+| DLVR-04 | Phase 5 | Pending |
+| DLVR-05 | Phase 5 | Pending |
+| CODE-01 | Phase 5 | Pending |
+| CODE-02 | Phase 5 | Pending |
+| CODE-03 | Phase 5 | Pending |
+| CODE-04 | Phase 7 | Pending |
+| CODE-05 | Phase 7 | Pending |
+| PROG-01 | Phase 6 | Pending |
+| PROG-02 | Phase 6 | Pending |
+| PROG-03 | Phase 6 | Pending |
+| PROG-04 | Phase 6 | Pending |
+| PROG-05 | Phase 6 | Pending |
+| DEPL-01 | Phase 5 | Pending |
+| DEPL-02 | Phase 5 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 17 total
-- Mapped to phases: 0
-- Unmapped: 17
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-16*
-*Last updated: 2026-03-16 after initial definition*
+*Last updated: 2026-03-16 after roadmap creation*
