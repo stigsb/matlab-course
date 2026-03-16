@@ -41,11 +41,12 @@
   3. User sees MATLAB code with syntax highlighting and can copy snippets or download .m files
   4. Site works on mobile devices and supports dark mode toggle
   5. Site is publicly accessible on GitHub Pages and auto-deploys on push
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Scaffold Astro/Starlight project, configure for GitHub Pages, create landing page and deploy workflow
+- [ ] 05-02-PLAN.md — Migrate all 8 lessons, 4 reference cards, and 45 .m scripts into the site
+- [ ] 05-03-PLAN.md — Deploy to GitHub Pages and visual verification of complete site
 
 ### Phase 6: Progress Tracking
 **Goal**: Christel can track her completion across all modules with persistent progress that survives browser sessions
@@ -85,6 +86,6 @@ Phases execute in numeric order: 5 -> 5.x -> 6 -> 6.x -> 7
 | 2. Programming and Math Foundations | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 3. Neural Coding and Information Theory | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 4. Dimensionality Reduction and Attractor Networks | v1.0 | 2/2 | Complete | 2026-03-15 |
-| 5. Site Foundation and Deploy | v1.1 | 0/? | Not started | - |
+| 5. Site Foundation and Deploy | v1.1 | 0/3 | Not started | - |
 | 6. Progress Tracking | v1.1 | 0/? | Not started | - |
 | 7. AI-Powered Feedback | v1.1 | 0/? | Not started | - |
