@@ -9,7 +9,7 @@ Requirements for interactive web version. Each maps to roadmap phases.
 
 ### Content Delivery
 
-- [ ] **DLVR-01**: User can read course lessons as web pages with formatted text and code blocks
+- [x] **DLVR-01**: User can read course lessons as web pages with formatted text and code blocks
 - [x] **DLVR-02**: User can navigate between modules and lessons via sidebar
 - [x] **DLVR-03**: User can search across all course content
 - [x] **DLVR-04**: User can toggle dark mode
@@ -17,9 +17,9 @@ Requirements for interactive web version. Each maps to roadmap phases.
 
 ### Code Workflow
 
-- [ ] **CODE-01**: User sees MATLAB code with syntax highlighting in lessons
-- [ ] **CODE-02**: User can copy code snippets to clipboard with one click
-- [ ] **CODE-03**: User can download .m script files from lesson pages
+- [x] **CODE-01**: User sees MATLAB code with syntax highlighting in lessons
+- [x] **CODE-02**: User can copy code snippets to clipboard with one click
+- [x] **CODE-03**: User can download .m script files from lesson pages
 - [ ] **CODE-04**: User can submit exercise code for AI-powered correctness feedback
 - [ ] **CODE-05**: User can configure their OpenAI API key in settings (persisted in localStorage)
 
@@ -64,14 +64,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DLVR-01 | Phase 5 | Pending |
+| DLVR-01 | Phase 5 | Complete |
 | DLVR-02 | Phase 5 | Complete |
 | DLVR-03 | Phase 5 | Complete |
 | DLVR-04 | Phase 5 | Complete |
 | DLVR-05 | Phase 5 | Complete |
-| CODE-01 | Phase 5 | Pending |
-| CODE-02 | Phase 5 | Pending |
-| CODE-03 | Phase 5 | Pending |
+| CODE-01 | Phase 5 | Complete |
+| CODE-02 | Phase 5 | Complete |
+| CODE-03 | Phase 5 | Complete |
 | CODE-04 | Phase 7 | Pending |
 | CODE-05 | Phase 7 | Pending |
 | PROG-01 | Phase 6 | Pending |

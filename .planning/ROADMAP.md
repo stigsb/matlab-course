@@ -41,7 +41,7 @@
   3. User sees MATLAB code with syntax highlighting and can copy snippets or download .m files
   4. Site works on mobile devices and supports dark mode toggle
   5. Site is publicly accessible on GitHub Pages and auto-deploys on push
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
 - [x] 05-01-PLAN.md — Scaffold Astro/Starlight project, configure for GitHub Pages, create landing page and deploy workflow
@@ -86,6 +86,6 @@ Phases execute in numeric order: 5 -> 5.x -> 6 -> 6.x -> 7
 | 2. Programming and Math Foundations | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 3. Neural Coding and Information Theory | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 4. Dimensionality Reduction and Attractor Networks | v1.0 | 2/2 | Complete | 2026-03-15 |
-| 5. Site Foundation and Deploy | v1.1 | 1/3 | In progress | - |
+| 5. Site Foundation and Deploy | 2/3 | In Progress|  | - |
 | 6. Progress Tracking | v1.1 | 0/? | Not started | - |
 | 7. AI-Powered Feedback | v1.1 | 0/? | Not started | - |
