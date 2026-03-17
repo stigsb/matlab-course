@@ -222,11 +222,11 @@ In other words: PCA shows you the shape of the valleys. Attractor networks expla
 
 Download these files and open them in MATLAB Desktop:
 
-- [demo_energy_landscape.m](/matlab-course/scripts/08-attractor-networks/demo_energy_landscape.m)
-- [demo_hopfield.m](/matlab-course/scripts/08-attractor-networks/demo_hopfield.m)
-- [demo_ring_attractor.m](/matlab-course/scripts/08-attractor-networks/demo_ring_attractor.m)
-- [exercise_attractors.m](/matlab-course/scripts/08-attractor-networks/exercise_attractors.m)
-- [solution_attractors.m](/matlab-course/scripts/08-attractor-networks/solution_attractors.m)
+- [demo_energy_landscape.m](/scripts/08-attractor-networks/demo_energy_landscape.m)
+- [demo_hopfield.m](/scripts/08-attractor-networks/demo_hopfield.m)
+- [demo_ring_attractor.m](/scripts/08-attractor-networks/demo_ring_attractor.m)
+- [exercise_attractors.m](/scripts/08-attractor-networks/exercise_attractors.m)
+- [solution_attractors.m](/scripts/08-attractor-networks/solution_attractors.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

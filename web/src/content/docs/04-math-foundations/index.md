@@ -278,11 +278,11 @@ In Module 05 (Phase 3), you will use these tools on real neural data -- spike ra
 
 Download these files and open them in MATLAB Desktop:
 
-- [demo_eigenvalues.m](/matlab-course/scripts/04-math-foundations/demo_eigenvalues.m)
-- [demo_matrix_transform.m](/matlab-course/scripts/04-math-foundations/demo_matrix_transform.m)
-- [demo_statistics.m](/matlab-course/scripts/04-math-foundations/demo_statistics.m)
-- [exercise_math.m](/matlab-course/scripts/04-math-foundations/exercise_math.m)
-- [solution_math.m](/matlab-course/scripts/04-math-foundations/solution_math.m)
+- [demo_eigenvalues.m](/scripts/04-math-foundations/demo_eigenvalues.m)
+- [demo_matrix_transform.m](/scripts/04-math-foundations/demo_matrix_transform.m)
+- [demo_statistics.m](/scripts/04-math-foundations/demo_statistics.m)
+- [exercise_math.m](/scripts/04-math-foundations/exercise_math.m)
+- [solution_math.m](/scripts/04-math-foundations/solution_math.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

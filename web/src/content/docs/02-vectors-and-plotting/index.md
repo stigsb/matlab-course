@@ -354,13 +354,13 @@ Try `exercise_vectors.m` and `exercise_plotting.m` -- they are mostly pre-writte
 
 Download these files and open them in MATLAB Desktop:
 
-- [demo_plotting.m](/matlab-course/scripts/02-vectors-and-plotting/demo_plotting.m)
-- [demo_vector_arrows.m](/matlab-course/scripts/02-vectors-and-plotting/demo_vector_arrows.m)
-- [demo_vectors.m](/matlab-course/scripts/02-vectors-and-plotting/demo_vectors.m)
-- [exercise_plotting.m](/matlab-course/scripts/02-vectors-and-plotting/exercise_plotting.m)
-- [exercise_vectors.m](/matlab-course/scripts/02-vectors-and-plotting/exercise_vectors.m)
-- [solution_plotting.m](/matlab-course/scripts/02-vectors-and-plotting/solution_plotting.m)
-- [solution_vectors.m](/matlab-course/scripts/02-vectors-and-plotting/solution_vectors.m)
+- [demo_plotting.m](/scripts/02-vectors-and-plotting/demo_plotting.m)
+- [demo_vector_arrows.m](/scripts/02-vectors-and-plotting/demo_vector_arrows.m)
+- [demo_vectors.m](/scripts/02-vectors-and-plotting/demo_vectors.m)
+- [exercise_plotting.m](/scripts/02-vectors-and-plotting/exercise_plotting.m)
+- [exercise_vectors.m](/scripts/02-vectors-and-plotting/exercise_vectors.m)
+- [solution_plotting.m](/scripts/02-vectors-and-plotting/solution_plotting.m)
+- [solution_vectors.m](/scripts/02-vectors-and-plotting/solution_vectors.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

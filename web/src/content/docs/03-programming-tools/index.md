@@ -354,13 +354,13 @@ Here, `average_value` is a function you write in its own file (`average_value.m`
 
 Download these files and open them in MATLAB Desktop:
 
-- [average_value.m](/matlab-course/scripts/03-programming-tools/average_value.m)
-- [demo_conditionals.m](/matlab-course/scripts/03-programming-tools/demo_conditionals.m)
-- [demo_functions.m](/matlab-course/scripts/03-programming-tools/demo_functions.m)
-- [demo_loops.m](/matlab-course/scripts/03-programming-tools/demo_loops.m)
-- [exercise_programming.m](/matlab-course/scripts/03-programming-tools/exercise_programming.m)
-- [filter_data.m](/matlab-course/scripts/03-programming-tools/filter_data.m)
-- [solution_programming.m](/matlab-course/scripts/03-programming-tools/solution_programming.m)
+- [average_value.m](/scripts/03-programming-tools/average_value.m)
+- [demo_conditionals.m](/scripts/03-programming-tools/demo_conditionals.m)
+- [demo_functions.m](/scripts/03-programming-tools/demo_functions.m)
+- [demo_loops.m](/scripts/03-programming-tools/demo_loops.m)
+- [exercise_programming.m](/scripts/03-programming-tools/exercise_programming.m)
+- [filter_data.m](/scripts/03-programming-tools/filter_data.m)
+- [solution_programming.m](/scripts/03-programming-tools/solution_programming.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

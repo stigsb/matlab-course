@@ -162,10 +162,10 @@ Make sure the file is saved (Ctrl+S) and that you're in the Editor (click on the
 
 Download these files and open them in MATLAB Desktop:
 
-- [demo_hello.m](/matlab-course/scripts/01-first-steps/demo_hello.m)
-- [demo_variables.m](/matlab-course/scripts/01-first-steps/demo_variables.m)
-- [exercise_variables.m](/matlab-course/scripts/01-first-steps/exercise_variables.m)
-- [solution_variables.m](/matlab-course/scripts/01-first-steps/solution_variables.m)
+- [demo_hello.m](/scripts/01-first-steps/demo_hello.m)
+- [demo_variables.m](/scripts/01-first-steps/demo_variables.m)
+- [exercise_variables.m](/scripts/01-first-steps/exercise_variables.m)
+- [solution_variables.m](/scripts/01-first-steps/solution_variables.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

@@ -293,12 +293,12 @@ Then practice with `exercise_info_theory.m`.
 
 Download these files and open them in MATLAB Desktop:
 
-- [compute_entropy.m](/matlab-course/scripts/06-information-theory/compute_entropy.m)
-- [demo_entropy.m](/matlab-course/scripts/06-information-theory/demo_entropy.m)
-- [demo_logarithms.m](/matlab-course/scripts/06-information-theory/demo_logarithms.m)
-- [demo_mutual_information.m](/matlab-course/scripts/06-information-theory/demo_mutual_information.m)
-- [exercise_info_theory.m](/matlab-course/scripts/06-information-theory/exercise_info_theory.m)
-- [solution_info_theory.m](/matlab-course/scripts/06-information-theory/solution_info_theory.m)
+- [compute_entropy.m](/scripts/06-information-theory/compute_entropy.m)
+- [demo_entropy.m](/scripts/06-information-theory/demo_entropy.m)
+- [demo_logarithms.m](/scripts/06-information-theory/demo_logarithms.m)
+- [demo_mutual_information.m](/scripts/06-information-theory/demo_mutual_information.m)
+- [exercise_info_theory.m](/scripts/06-information-theory/exercise_info_theory.m)
+- [solution_info_theory.m](/scripts/06-information-theory/solution_info_theory.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

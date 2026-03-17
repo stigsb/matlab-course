@@ -194,11 +194,11 @@ See `reference/pca_attractors.md` for a lookup table of PCA steps, functions, an
 
 Download these files and open them in MATLAB Desktop:
 
-- [demo_pca_neural.m](/matlab-course/scripts/07-dimensionality-reduction/demo_pca_neural.m)
-- [demo_pca_steps.m](/matlab-course/scripts/07-dimensionality-reduction/demo_pca_steps.m)
-- [demo_why_reduce.m](/matlab-course/scripts/07-dimensionality-reduction/demo_why_reduce.m)
-- [exercise_dimensionality.m](/matlab-course/scripts/07-dimensionality-reduction/exercise_dimensionality.m)
-- [solution_dimensionality.m](/matlab-course/scripts/07-dimensionality-reduction/solution_dimensionality.m)
+- [demo_pca_neural.m](/scripts/07-dimensionality-reduction/demo_pca_neural.m)
+- [demo_pca_steps.m](/scripts/07-dimensionality-reduction/demo_pca_steps.m)
+- [demo_why_reduce.m](/scripts/07-dimensionality-reduction/demo_why_reduce.m)
+- [exercise_dimensionality.m](/scripts/07-dimensionality-reduction/exercise_dimensionality.m)
+- [solution_dimensionality.m](/scripts/07-dimensionality-reduction/solution_dimensionality.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.

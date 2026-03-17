@@ -230,12 +230,12 @@ You can now simulate and visualize the basic neural code. In **Module 06: Inform
 
 Download these files and open them in MATLAB Desktop:
 
-- [decode_direction.m](/matlab-course/scripts/05-neural-coding/decode_direction.m)
-- [demo_population_coding.m](/matlab-course/scripts/05-neural-coding/demo_population_coding.m)
-- [demo_spike_trains.m](/matlab-course/scripts/05-neural-coding/demo_spike_trains.m)
-- [demo_tuning_curves.m](/matlab-course/scripts/05-neural-coding/demo_tuning_curves.m)
-- [exercise_neural_coding.m](/matlab-course/scripts/05-neural-coding/exercise_neural_coding.m)
-- [solution_neural_coding.m](/matlab-course/scripts/05-neural-coding/solution_neural_coding.m)
+- [decode_direction.m](/scripts/05-neural-coding/decode_direction.m)
+- [demo_population_coding.m](/scripts/05-neural-coding/demo_population_coding.m)
+- [demo_spike_trains.m](/scripts/05-neural-coding/demo_spike_trains.m)
+- [demo_tuning_curves.m](/scripts/05-neural-coding/demo_tuning_curves.m)
+- [exercise_neural_coding.m](/scripts/05-neural-coding/exercise_neural_coding.m)
+- [solution_neural_coding.m](/scripts/05-neural-coding/solution_neural_coding.m)
 
 :::tip
 To run these scripts, save them to a folder, set that folder as your MATLAB Current Folder, then press F5 or click Run.
