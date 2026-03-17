@@ -1,6 +1,6 @@
 {
 	"name": "matlab-survival-kit",
 	"assets": {
-		"directory": "web/dist"
+		"directory": "dist"
 	}
 }
